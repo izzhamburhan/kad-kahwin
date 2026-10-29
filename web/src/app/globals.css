@@ -1,0 +1,240 @@
+@import "tailwindcss";
+
+/* ---------- Themes ----------
+   Every colour used by the invitation comes from these tokens, so a theme is
+   just a different set of values under [data-theme]. */
+:root,
+[data-theme="zamrud"] {
+  --bg: #0b2620;
+  --bg-2: #10352c;
+  --bg-3: #164236;
+  --ink: #f6efe1;
+  --ink-soft: #cdbf9f;
+  --ink-mute: #8fa496;
+  --gold: #d4af6a;
+  --gold-hi: #f6e2ae;
+  --gold-lo: #8c6a2c;
+  --petal: #f0c4c6;
+  --card: rgba(246, 239, 225, 0.05);
+  --card-line: rgba(212, 175, 106, 0.28);
+  --paper: #f7f0e1;
+  --paper-2: #e9dcc0;
+  --paper-ink: #1d3a30;
+  --seal: #7b1e2a;
+  --seal-hi: #a8323f;
+}
+
+[data-theme="gading"] {
+  --bg: #f6efe2;
+  --bg-2: #efe5d1;
+  --bg-3: #e7dac0;
+  --ink: #1d3a30;
+  --ink-soft: #5d5844;
+  --ink-mute: #8b8670;
+  --gold: #a9823b;
+  --gold-hi: #d8b46a;
+  --gold-lo: #7a5a22;
+  --petal: #e2a6ad;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-line: rgba(169, 130, 59, 0.3);
+  --paper: #fffaf0;
+  --paper-2: #efe3c9;
+  --paper-ink: #1d3a30;
+  --seal: #1f5a46;
+  --seal-hi: #2f7a60;
+}
+
+[data-theme="nila"] {
+  --bg: #11132a;
+  --bg-2: #181b3a;
+  --bg-3: #20244a;
+  --ink: #f3ecdc;
+  --ink-soft: #cbbfa4;
+  --ink-mute: #8c8fae;
+  --gold: #cfa862;
+  --gold-hi: #f3dca6;
+  --gold-lo: #86662a;
+  --petal: #e7b9cf;
+  --card: rgba(243, 236, 220, 0.05);
+  --card-line: rgba(207, 168, 98, 0.28);
+  --paper: #f5eedf;
+  --paper-2: #e3d6ba;
+  --paper-ink: #1b1e3d;
+  --seal: #6b1d3a;
+  --seal-hi: #93304f;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-gold: var(--gold);
+  --color-gold-hi: var(--gold-hi);
+  --color-gold-lo: var(--gold-lo);
+  --color-card: var(--card);
+  --color-card-line: var(--card-line);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+  --font-script: var(--font-script);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+  --font-arabic: var(--font-arabic);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-serif), Georgia, serif;
+  overflow-x: hidden;
+}
+
+/* Champagne-gold foil text. */
+.foil {
+  background: linear-gradient(
+    100deg,
+    var(--gold-lo) 0%,
+    var(--gold) 22%,
+    var(--gold-hi) 42%,
+    var(--gold) 58%,
+    var(--gold-lo) 80%,
+    var(--gold) 100%
+  );
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: foil-sheen 7s ease-in-out infinite;
+}
+
+@keyframes foil-sheen {
+  0%,
+  100% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+}
+
+/* Songket weave texture: a mask tinted with the theme's gold. */
+.songket-bg {
+  position: relative;
+  isolation: isolate;
+}
+.songket-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--gold);
+  opacity: 0.07;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23000' stroke-width='1'%3E%3Cpath d='M28 0L56 28L28 56L0 28Z'/%3E%3Cpath d='M28 11L45 28L28 45L11 28Z' stroke-width='.6'/%3E%3C/g%3E%3Cg fill='%23000'%3E%3Cellipse cx='28' cy='28' rx='2.2' ry='5.5'/%3E%3Cellipse cx='28' cy='28' rx='5.5' ry='2.2'/%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='56' cy='0' r='2'/%3E%3Ccircle cx='0' cy='56' r='2'/%3E%3Ccircle cx='56' cy='56' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23000' stroke-width='1'%3E%3Cpath d='M28 0L56 28L28 56L0 28Z'/%3E%3Cpath d='M28 11L45 28L28 45L11 28Z' stroke-width='.6'/%3E%3C/g%3E%3Cg fill='%23000'%3E%3Cellipse cx='28' cy='28' rx='2.2' ry='5.5'/%3E%3Cellipse cx='28' cy='28' rx='5.5' ry='2.2'/%3E%3Ccircle cx='0' cy='0' r='2'/%3E%3Ccircle cx='56' cy='0' r='2'/%3E%3Ccircle cx='0' cy='56' r='2'/%3E%3Ccircle cx='56' cy='56' r='2'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-size: 56px 56px;
+  mask-size: 56px 56px;
+}
+
+/* Paper grain for the envelope and cards. */
+.paper {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(120% 80% at 30% 0%, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(100% 100% at 100% 100%, rgba(0, 0, 0, 0.06), transparent 60%);
+}
+
+.label {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+.field {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid var(--card-line);
+  background: var(--card);
+  padding: 0.85rem 1rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.field::placeholder {
+  color: var(--ink-mute);
+}
+.field:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 22%, transparent);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1b160b;
+  background: linear-gradient(135deg, var(--gold-hi), var(--gold) 55%, var(--gold-lo));
+  box-shadow:
+    0 8px 24px -10px color-mix(in srgb, var(--gold) 70%, transparent),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.2s, filter 0.2s;
+}
+.btn-gold:active {
+  transform: scale(0.97);
+}
+.btn-gold:disabled {
+  filter: grayscale(0.5) brightness(0.8);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 1px solid var(--card-line);
+  background: var(--card);
+  transition: transform 0.2s, border-color 0.2s;
+}
+.btn-ghost:active {
+  transform: scale(0.97);
+}
+.btn-ghost:hover {
+  border-color: var(--gold);
+}
+
+.safe-bottom {
+  padding-bottom: max(env(safe-area-inset-bottom), 0.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .foil {
+    animation: none;
+  }
+}
