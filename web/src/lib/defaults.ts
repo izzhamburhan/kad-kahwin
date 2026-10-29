@@ -50,8 +50,8 @@ export const defaultWedding: Wedding = {
     ms: "Semua hidangan adalah halal. Maklumkan keperluan pemakanan khas dalam borang RSVP.",
     en: "All food served is halal. Let us know any dietary needs in the RSVP form.",
   },
-  contacts: [],
-  rsvp: { deadline: "2027-03-28", maxPax: 4, whatsapp: "" },
+  contacts: [{ name: "Izzham", role: { ms: "Adik pengantin", en: "Groom's brother" }, phone: "601123505422" }],
+  rsvp: { deadline: "2027-03-28", maxPax: 4, whatsapp: "601123505422" },
   gift: {
     bank: "",
     accountName: "",
