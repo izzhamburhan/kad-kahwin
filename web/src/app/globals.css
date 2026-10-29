@@ -238,3 +238,100 @@ body {
     animation: none;
   }
 }
+/* ---------- Kampung (/kampung) ----------
+   A kampung house at dusk: cengal-timber interiors lit by pelita flame,
+   tikar mengkuang weave and carved awan larat. Shared components pick
+   these tokens up unchanged. */
+[data-theme="kampung"] {
+  --bg: #2b140c;
+  --bg-2: #371a10;
+  --bg-3: #452214;
+  --ink: #f8e6c8;
+  --ink-soft: #e0bf97;
+  --ink-mute: #b08d6c;
+  --gold: #f0a03c;
+  --gold-hi: #ffd27e;
+  --gold-lo: #b4661a;
+  --petal: #ffd27e;
+  --card: rgba(255, 214, 160, 0.06);
+  --card-line: rgba(240, 160, 60, 0.32);
+  --paper: #f2dcb4;
+  --paper-2: #dcbc88;
+  --paper-ink: #371a10;
+  --seal: #9b2a22;
+  --seal-hi: #c4473a;
+  --sawah: #4f7a3e;
+  --kain: #9b2a22;
+}
+
+.kampung {
+  --font-script: var(--font-kampung-display);
+  --font-serif: var(--font-kampung-body);
+  --font-sans: var(--font-kampung-ui);
+  font-family: var(--font-kampung-body), Georgia, serif;
+}
+
+/* Kampung sets type in solid pelita colour, not foil; section labels are dropped. */
+.kampung .foil {
+  background: none;
+  color: var(--gold-hi);
+  animation: none;
+}
+.kampung .section-eyebrow {
+  display: none;
+}
+.kampung .songket-bg::before {
+  opacity: 0.045;
+}
+
+.kampung ::selection {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+/* Cengal planks: vertical boards with darker seams and a little grain. */
+.papan {
+  background-color: var(--bg-2);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.32) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(90deg, rgba(255, 210, 150, 0.035) 0 9px, transparent 9px 17px, rgba(0, 0, 0, 0.05) 17px 23px);
+}
+
+.flicker {
+  animation: flicker 1.6s ease-in-out infinite;
+}
+@keyframes flicker {
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(0.88, 1.12);
+  }
+  60% {
+    transform: scale(1.06, 0.92);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .flicker {
+    animation: none;
+  }
+}
+
+.twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .twinkle {
+    animation: none;
+  }
+}

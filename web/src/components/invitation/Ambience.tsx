@@ -6,10 +6,12 @@ type Petal = { x: number; y: number; s: number; vy: number; sway: number; phase:
 type Spark = { x: number; y: number; r: number; phase: number; speed: number; drift: number };
 
 /**
- * Falling petals and drifting gold dust on a single canvas.
- * Kept deliberately light for phones: ~16 petals, ~28 sparks, paused when the tab is hidden.
+ * Falling petals and drifting gold dust on a single canvas, or (kind="fireflies")
+ * kelip-kelip wandering in the dark. Kept deliberately light for phones and paused
+ * when the tab is hidden.
  */
-export function Ambience({ intensity = 1 }: { intensity?: number }) {
+export function Ambience({ intensity = 1, kind = "petals" }: { intensity?: number; kind?: "petals" | "fireflies" }) {
+  const fireflies = kind === "fireflies";
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -36,7 +38,7 @@ export function Ambience({ intensity = 1 }: { intensity?: number }) {
     window.addEventListener("resize", resize);
 
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
-    const petals: Petal[] = Array.from({ length: Math.round(16 * intensity) }, () => ({
+    const petals: Petal[] = Array.from({ length: fireflies ? 0 : Math.round(16 * intensity) }, () => ({
       x: rand(0, w),
       y: rand(-h, h),
       s: rand(6, 12),
@@ -47,13 +49,13 @@ export function Ambience({ intensity = 1 }: { intensity?: number }) {
       vr: rand(-1, 1),
       hue: Math.random(),
     }));
-    const sparks: Spark[] = Array.from({ length: Math.round(28 * intensity) }, () => ({
+    const sparks: Spark[] = Array.from({ length: Math.round((fireflies ? 22 : 28) * intensity) }, () => ({
       x: rand(0, w),
       y: rand(0, h),
-      r: rand(0.6, 1.8),
+      r: fireflies ? rand(1.2, 2.4) : rand(0.6, 1.8),
       phase: rand(0, Math.PI * 2),
-      speed: rand(0.6, 1.6),
-      drift: rand(-6, -14),
+      speed: fireflies ? rand(0.4, 1.1) : rand(0.6, 1.6),
+      drift: fireflies ? rand(-4, -9) : rand(-6, -14),
     }));
 
     const drawPetal = (p: Petal, t: number) => {
@@ -82,6 +84,8 @@ export function Ambience({ intensity = 1 }: { intensity?: number }) {
 
       for (const s of sparks) {
         s.y += s.drift * dt;
+        // Fireflies wander sideways instead of rising in a straight line.
+        if (fireflies) s.x += Math.sin(t * 0.7 + s.phase * 3) * 14 * dt;
         if (s.y < -4) {
           s.y = h + 4;
           s.x = rand(0, w);
@@ -90,7 +94,7 @@ export function Ambience({ intensity = 1 }: { intensity?: number }) {
         ctx.globalAlpha = a * 0.8;
         ctx.fillStyle = gold;
         ctx.shadowColor = gold;
-        ctx.shadowBlur = 6;
+        ctx.shadowBlur = fireflies ? 14 : 6;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -124,7 +128,7 @@ export function Ambience({ intensity = 1 }: { intensity?: number }) {
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [intensity]);
+  }, [intensity, fireflies]);
 
   return <canvas ref={ref} className="pointer-events-none fixed inset-0 z-30 h-full w-full" aria-hidden />;
 }

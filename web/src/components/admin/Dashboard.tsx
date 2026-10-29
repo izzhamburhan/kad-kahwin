@@ -21,8 +21,8 @@ import { Group, Row, Segmented, Stat } from "./ui";
 
 type Tab = "overview" | "rsvp" | "guests" | "wishes" | "settings";
 
-const inviteUrl = (name?: string) => {
-  const base = `${location.origin}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`;
+const inviteUrl = (name?: string, design = "") => {
+  const base = `${location.origin}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/${design}`;
   return name ? `${base}?to=${encodeURIComponent(name)}` : base;
 };
 
@@ -81,6 +81,9 @@ export function Dashboard({ onSignOut, email }: { onSignOut?: () => void; email?
         <div className="flex items-center gap-3 pb-1.5 text-[0.95rem]">
           <a href={inviteUrl()} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-emerald-700">
             Lihat <ExternalLink size={15} />
+          </a>
+          <a href={inviteUrl(undefined, "kampung/")} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-emerald-700">
+            Kampung <ExternalLink size={15} />
           </a>
           {onSignOut && (
             <button type="button" onClick={onSignOut} className="text-stone-500" title={email}>

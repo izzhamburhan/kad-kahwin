@@ -38,7 +38,7 @@ export function Section({
     <section id={id} className={`relative scroll-mt-6 px-6 py-16 ${className}`}>
       {(eyebrow || title) && (
         <Reveal className="mb-10 text-center">
-          {eyebrow && eyebrow !== title && <p className="label mb-3 text-gold">{eyebrow}</p>}
+          {eyebrow && eyebrow !== title && <p className="section-eyebrow label mb-3 text-gold">{eyebrow}</p>}
           {title && <h2 className="foil px-4 font-script text-[2.6rem] leading-tight">{title}</h2>}
           <Divider className="mt-4" />
         </Reveal>
