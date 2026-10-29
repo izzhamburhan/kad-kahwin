@@ -189,7 +189,7 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1b160b;
+  color: var(--on-gold, #1b160b);
   background: linear-gradient(135deg, var(--gold-hi), var(--gold) 55%, var(--gold-lo));
   box-shadow:
     0 8px 24px -10px color-mix(in srgb, var(--gold) 70%, transparent),
@@ -260,33 +260,125 @@ body {
   --paper-ink: #371a10;
   --seal: #9b2a22;
   --seal-hi: #c4473a;
-  --sawah: #4f7a3e;
-  --kain: #9b2a22;
+  --heading: #ffd27e;
+  --on-gold: #2b140c;
 }
 
-.kampung {
-  --font-script: var(--font-kampung-display);
-  --font-serif: var(--font-kampung-body);
-  --font-sans: var(--font-kampung-ui);
-  font-family: var(--font-kampung-body), Georgia, serif;
+/* ---------- Alternate designs (/kampung, /songket, /pelamin, /surat, /batik) ----------
+   Each design page wraps itself in .design with its own three faces, and sets
+   data-theme on <html>. Headings are solid colour, not foil; section labels are dropped. */
+.design {
+  --font-script: var(--font-d-display);
+  --font-serif: var(--font-d-body);
+  --font-sans: var(--font-d-ui);
+  font-family: var(--font-d-body), Georgia, serif;
 }
-
-/* Kampung sets type in solid pelita colour, not foil; section labels are dropped. */
-.kampung .foil {
+.design .foil {
   background: none;
-  color: var(--gold-hi);
+  color: var(--heading, var(--gold-hi));
   animation: none;
 }
-.kampung .section-eyebrow {
+.design .section-eyebrow {
   display: none;
 }
-.kampung .songket-bg::before {
+.design .songket-bg::before {
   opacity: 0.045;
 }
-
-.kampung ::selection {
+.design ::selection {
   background: var(--gold);
-  color: var(--bg);
+  color: var(--on-gold, var(--bg));
+}
+
+/* Songket: woven gold thread on deep maroon. */
+[data-theme="songket"] {
+  --bg: #1c0710;
+  --bg-2: #2a0b17;
+  --bg-3: #3a1020;
+  --ink: #f7e7c6;
+  --ink-soft: #dcc095;
+  --ink-mute: #b0906a;
+  --gold: #d9a441;
+  --gold-hi: #f3d28a;
+  --gold-lo: #8f6420;
+  --petal: #f3d28a;
+  --card: rgba(243, 210, 138, 0.05);
+  --card-line: rgba(217, 164, 65, 0.32);
+  --paper: #f3e3c0;
+  --paper-2: #dcc08a;
+  --paper-ink: #3a1020;
+  --seal: #6b0f22;
+  --seal-hi: #8e1a30;
+  --heading: #f3d28a;
+  --on-gold: #24070f;
+}
+
+/* Pelamin: a royal-blue hall, gold dais and pink bunga manggar. */
+[data-theme="pelamin"] {
+  --bg: #0f1f4d;
+  --bg-2: #142a63;
+  --bg-3: #1b3577;
+  --ink: #fdf6e8;
+  --ink-soft: #ddd2bb;
+  --ink-mute: #9eaad0;
+  --gold: #e6b84a;
+  --gold-hi: #f8db8a;
+  --gold-lo: #a77c1f;
+  --petal: #f28bb0;
+  --card: rgba(255, 240, 210, 0.06);
+  --card-line: rgba(230, 184, 74, 0.35);
+  --paper: #fbf3e2;
+  --paper-2: #ecdcb8;
+  --paper-ink: #142a63;
+  --seal: #c23b6b;
+  --seal-hi: #e05d8a;
+  --heading: #f8db8a;
+  --on-gold: #14204a;
+}
+
+/* Surat: a 90s airmail letter, ballpoint-navy ink and red-blue chevrons. */
+[data-theme="surat"] {
+  --bg: #dfe9f2;
+  --bg-2: #d2e0ec;
+  --bg-3: #c3d5e5;
+  --ink: #1b2a6b;
+  --ink-soft: #3a4985;
+  --ink-mute: #56628c;
+  --gold: #c8323b;
+  --gold-hi: #e0525a;
+  --gold-lo: #9a1f29;
+  --petal: #c8323b;
+  --card: rgba(255, 255, 255, 0.6);
+  --card-line: rgba(27, 42, 107, 0.22);
+  --paper: #f3f7fb;
+  --paper-2: #d9e5f1;
+  --paper-ink: #1b2a6b;
+  --seal: #c8323b;
+  --seal-hi: #e0525a;
+  --heading: #1b2a6b;
+  --on-gold: #ffffff;
+}
+
+/* Batik: indigo-dyed cotton, soga brown and white wax lines. */
+[data-theme="batik"] {
+  --bg: #18224d;
+  --bg-2: #1f2b5e;
+  --bg-3: #27356f;
+  --ink: #f4ead6;
+  --ink-soft: #d8c9ab;
+  --ink-mute: #a3aacb;
+  --gold: #c27a3a;
+  --gold-hi: #e7a965;
+  --gold-lo: #8a4b22;
+  --petal: #e7a965;
+  --card: rgba(244, 234, 214, 0.05);
+  --card-line: rgba(231, 169, 101, 0.3);
+  --paper: #f4ead6;
+  --paper-2: #e2cfa9;
+  --paper-ink: #18224d;
+  --seal: #8a4b22;
+  --seal-hi: #b0652f;
+  --heading: #f4ead6;
+  --on-gold: #1a1208;
 }
 
 /* Cengal planks: vertical boards with darker seams and a little grain. */

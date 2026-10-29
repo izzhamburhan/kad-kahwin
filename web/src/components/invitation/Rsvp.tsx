@@ -199,7 +199,7 @@ export function Rsvp({ w, lang, guest }: { w: Wedding; lang: Lang; guest: string
                           transition={{ type: "spring", stiffness: 400, damping: 34 }}
                         />
                       )}
-                      <span className={`relative ${form.attending === v ? "text-[#1b160b]" : "text-ink-soft"}`}>
+                      <span className={`relative ${form.attending === v ? "text-[var(--on-gold,#1b160b)]" : "text-ink-soft"}`}>
                         {v ? s("attending", lang) : s("notAttending", lang)}
                       </span>
                     </button>

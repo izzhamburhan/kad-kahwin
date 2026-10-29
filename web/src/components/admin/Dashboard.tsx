@@ -21,6 +21,16 @@ import { Group, Row, Segmented, Stat } from "./ui";
 
 type Tab = "overview" | "rsvp" | "guests" | "wishes" | "settings";
 
+// Every design reads the same settings and sends RSVPs here; only the look differs.
+const DESIGNS = [
+  { path: "", name: "Zamrud", note: "Sampul dan mohor" },
+  { path: "kampung/", name: "Kampung", note: "Senja di rumah kampung" },
+  { path: "songket/", name: "Songket", note: "Kain ditenun benang emas" },
+  { path: "pelamin/", name: "Pelamin", note: "Berjalan ke pelamin" },
+  { path: "surat/", name: "Surat", note: "Surat pos udara 90-an" },
+  { path: "batik/", name: "Batik", note: "Lilin, canting dan pewarna" },
+];
+
 const inviteUrl = (name?: string, design = "") => {
   const base = `${location.origin}${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/${design}`;
   return name ? `${base}?to=${encodeURIComponent(name)}` : base;
@@ -81,9 +91,6 @@ export function Dashboard({ onSignOut, email }: { onSignOut?: () => void; email?
         <div className="flex items-center gap-3 pb-1.5 text-[0.95rem]">
           <a href={inviteUrl()} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-emerald-700">
             Lihat <ExternalLink size={15} />
-          </a>
-          <a href={inviteUrl(undefined, "kampung/")} target="_blank" rel="noreferrer" className="flex items-center gap-1 text-emerald-700">
-            Kampung <ExternalLink size={15} />
           </a>
           {onSignOut && (
             <button type="button" onClick={onSignOut} className="text-stone-500" title={email}>
@@ -151,6 +158,19 @@ function Overview({
       </div>
 
       <div className="mt-7">
+        <Group title="Reka bentuk kad" footer="Tambah ?to=Nama pada mana-mana pautan untuk nama tetamu pada kad.">
+          {DESIGNS.map((d) => (
+            <a key={d.path} href={inviteUrl(undefined, d.path)} target="_blank" rel="noreferrer" className="flex items-center justify-between px-4 py-3">
+              <span>
+                <span className="block font-medium">{d.name}</span>
+                <span className="block text-xs text-stone-500">/{d.path}</span>
+              </span>
+              <span className="flex items-center gap-1.5 text-sm text-stone-500">
+                {d.note} <ExternalLink size={14} className="text-emerald-700" />
+              </span>
+            </a>
+          ))}
+        </Group>
         <Group title="Jawapan terkini">
           {rsvps.length === 0 ? (
             <Row className="text-center text-sm text-stone-500">

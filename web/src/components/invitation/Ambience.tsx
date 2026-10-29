@@ -7,11 +7,12 @@ type Spark = { x: number; y: number; r: number; phase: number; speed: number; dr
 
 /**
  * Falling petals and drifting gold dust on a single canvas, or (kind="fireflies")
- * kelip-kelip wandering in the dark. Kept deliberately light for phones and paused
+ * kelip-kelip wandering in the dark, or (kind="dust") the gold dust alone. Kept deliberately light for phones and paused
  * when the tab is hidden.
  */
-export function Ambience({ intensity = 1, kind = "petals" }: { intensity?: number; kind?: "petals" | "fireflies" }) {
+export function Ambience({ intensity = 1, kind = "petals" }: { intensity?: number; kind?: "petals" | "fireflies" | "dust" }) {
   const fireflies = kind === "fireflies";
+  const noPetals = kind !== "petals";
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export function Ambience({ intensity = 1, kind = "petals" }: { intensity?: numbe
     window.addEventListener("resize", resize);
 
     const rand = (a: number, b: number) => a + Math.random() * (b - a);
-    const petals: Petal[] = Array.from({ length: fireflies ? 0 : Math.round(16 * intensity) }, () => ({
+    const petals: Petal[] = Array.from({ length: noPetals ? 0 : Math.round(16 * intensity) }, () => ({
       x: rand(0, w),
       y: rand(-h, h),
       s: rand(6, 12),
@@ -128,7 +129,7 @@ export function Ambience({ intensity = 1, kind = "petals" }: { intensity?: numbe
       window.removeEventListener("resize", resize);
       document.removeEventListener("visibilitychange", onVisibility);
     };
-  }, [intensity, fireflies]);
+  }, [intensity, fireflies, noPetals]);
 
   return <canvas ref={ref} className="pointer-events-none fixed inset-0 z-30 h-full w-full" aria-hidden />;
 }
