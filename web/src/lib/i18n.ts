@@ -48,6 +48,7 @@ const strings = {
   thanks: { ms: "Terima kasih", en: "Thank you" },
   seeYou: { ms: "Kami nantikan kehadiran anda.", en: "We can't wait to see you." },
   missYou: { ms: "Terima kasih atas doa restu anda.", en: "Thank you for your kind wishes." },
+  anotherReply: { ms: "Hantar RSVP untuk orang lain", en: "Send an RSVP for someone else" },
   alreadyReplied: { ms: "Anda telah pun memberi maklum balas.", en: "You have already replied." },
   duplicate: {
     ms: "Nombor telefon ini telah digunakan untuk RSVP. Hubungi tuan rumah untuk sebarang perubahan.",

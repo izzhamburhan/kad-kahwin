@@ -9,7 +9,8 @@ import { formatDateShort, normalizePhone, waLink } from "@/lib/format";
 import type { Lang, RsvpInput, Wedding } from "@/lib/types";
 import { Panel, Reveal, Section } from "./Section";
 
-const SENT_KEY = "vowe:rsvp:sent";
+// Kept per mode: a reply saved only on the phone in demo mode must not block a real one later.
+const SENT_KEY = `vowe:rsvp:sent:${isDemo ? "demo" : "live"}`;
 
 /** Check mark that draws itself, with a burst of petals around it. */
 function SuccessMark() {
@@ -140,6 +141,23 @@ export function Rsvp({ w, lang, guest }: { w: Wedding; lang: Lang; guest: string
                   {sent.attending ? `${s("seeYou", lang)} (${sent.pax} ${s("pax", lang).toLowerCase()})` : s("missYou", lang)}
                 </p>
                 {state !== "done" && <p className="mt-4 font-sans text-xs text-ink-mute">{s("alreadyReplied", lang)}</p>}
+                {/* Families often share one phone; the database still blocks a repeat phone number. */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    try {
+                      localStorage.removeItem(SENT_KEY);
+                    } catch {
+                      /* ignore */
+                    }
+                    setSent(null);
+                    setState("idle");
+                    setForm({ name: "", phone: "", attending: true, pax: 1, dietary: "", message: "" });
+                  }}
+                  className="mt-4 font-sans text-xs text-gold underline underline-offset-4"
+                >
+                  {s("anotherReply", lang)}
+                </button>
                 {isDemo && (
                   <div className="mt-6 rounded-2xl border border-dashed border-card-line p-4 text-left">
                     <p className="font-sans text-xs leading-relaxed text-ink-soft">{s("demoNote", lang)}</p>
