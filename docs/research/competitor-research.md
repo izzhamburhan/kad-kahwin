@@ -364,3 +364,53 @@ P0 = needed for parity · P1 = differentiator · P2 = delight
 - **Parents (the real buyers):** "Proper adab: honorifics, doa, pantun, every majlis and side in one link."
 - **Guests:** "Where to park, where to pray, when it's less crowded, and how to salam kaut, in one tap."
 - **On the day:** "Know who has arrived."
+---
+
+## 7. Code analysis with REA (1 November 2026)
+
+[REA](https://github.com/morluto/rea) 6.8.0 `analyze_web_bundle` was run on 22 competitor pages (each home page, plus the card demo where one exists) and on four pages of this site. Each page was opened in a local Chrome, and REA read the scripts the page had already loaded. Nothing was submitted, logged into or called, and no code, artwork or wording was copied.
+
+**How to read it:** routes and endpoints are static findings. They show what the software contains, not what customers can reach or what a package includes. JavaScript sizes are uncompressed script source, excluding images and fonts.
+
+The visual version of this section is the "Kad Kahwin Teardown" page (a private Claude artifact): https://claude.ai/artifact/Yah4qKJEPujJczkCgVRwCo
+
+### Stack, weight and routes by platform
+
+| Platform (page) | Built with | Scripts | JS | Revealing routes or modules |
+|---|---|---|---|---|
+| KahwinNow (card demo) | jQuery 1.11, AOS, particles.js, flipdown, slick | 16 | 375 KB | Card animation is AOS fade-ins, particles and a flip-clock countdown |
+| NakJemput (home) | jQuery 3.6, Bootstrap, Modernizr | 13 | 929 KB | Server-rendered; no client routes |
+| Jemputan.me (home) | Vue SPA (Laravel Mix), axios | 6 | 843 KB | `/studio`, `/registry`, `/pdf`, `/font-gallery`, `/vendor-program`, `/review/:uid/:oid`, `/voucheruser`, `/api/fav/add` |
+| Kadkahwinmy (home) | Same bundle layout as Jemputan.me | 4 | 896 KB | `/catalog/physical`, `/pricelist/physical`, `/delivery`, `/wedding-gallery`, `/api/reviews` |
+| AliveInvite (design preview) | Rails, Hotwire Turbo, Stimulus | 38 | 242 KB | Controllers: `gift_box_form`, `welcome-board`, `wizard_form`, `rsvp_modal`, `purchase_lookup`, `guestbook_table` |
+| Kahwin Studio (card demo) | Next.js, React | 29 | 1,554 KB | Site routes: `/themes`, `/try`, `/premium`, `/rsvp`, `/blog` |
+| Raikad (card demo) | Next.js, React, PostHog (session recording) | 39 | 1,826 KB | `/dashboard/memories/:event`, `/dashboard/ucapan/:event`, `/dashboard/maklum-balas`, `/api/guest-memories` |
+| Ajaklah (home) | Laravel, Inertia, Vue (Vite) | 10 | 558 KB | `vendors.index`, `bookings.index`, `galleries.preview`, `wishlists.preview` |
+| Kad2u (card demo) | PHP, inline scripts only | 1 | not measurable | — |
+| Creatr (card demo) | Next.js, React | 13 | 502 KB | Page title reads "KadKahwinSaya"; no client routes exposed |
+| Kunjung (card demo) | Next.js, React | 10 | 593 KB | `/build`, `/dashboard`, `/api/chatbot` |
+| EkadInvite (home) | Next.js, React, Sentry | 30 | 1,653 KB | 22 `/event-*` pages (incl. tahlil, valaikappu, shou-yan, berkhatan), 14 `/guides/*` (incl. `salam-kaut-duitnow`), `/reviews/write` |
+| Invito Studio (card demo) | Next.js, React | 11 | 1,301 KB | `/api/guest-memories`; 10 country pages and pages by faith |
+| OhMyKad (home) | Nuxt, Vue (Vite) | 104 | 1,365 KB | 141 routes: `/maker`, `/admin/ai-usage`, `/reseller/vouchers`, `/claim/:code`, `/picture-cards`, `/ar/mena` |
+| Mawaddah | — | — | — | DNS did not resolve |
+| **This site** (`/sirih`) | Next.js 16 static export, React, motion | 8 | 670 KB (was 911 KB) | react-dom 224 KB, motion 188 KB, Next.js runtime 181 KB; Supabase now loads only in the admin |
+
+### What it adds to the earlier findings
+
+- **Gaps now verified from app code:** guest photo memories (Raikad, Invito Studio, plus Ajaklah's live gallery); self-serve builders (Jemputan.me `/studio`, OhMyKad `/maker` with AI usage tracking, Kunjung `/build`); reseller and voucher programmes (OhMyKad, Jemputan.me); physical add-ons (AliveInvite gift boxes and welcome boards, Kadkahwinmy printed cards with delivery); post-order review requests (Jemputan.me, EkadInvite, Kadkahwinmy).
+- **Shared software, likely:** Jemputan.me and Kadkahwinmy load the same bundle layout and share route and API names (`/design/:id/:name`, `/finishpay`, `/api/login`, `/api/forgotpassword`). REA cannot confirm who runs them.
+- **Same endpoint name:** Raikad and Invito Studio both call `/api/guest-memories`. That may be coincidence.
+- **This site was mid-weight.** At 911 KB it was heavier than KahwinNow (375 KB), Creatr (502 KB) and Kunjung (593 KB). Guest pages now call Supabase's REST API with plain `fetch` and only the admin loads the Supabase client, which brings `/sirih` to about 670 KB (measured from the local build; modern browsers skip the 109 KB `noModule` polyfill).
+
+### Updated build order
+
+1. ~~Load Supabase on demand (effort S).~~ Done: guest pages use REST; the client is admin-only.
+2. Guest memories wall with moderation and album download (M).
+3. RSVP per majlis, with time slots (M).
+4. Salam kaut ledger and thank-you list (S).
+5. QR check-in at the door (M).
+6. WhatsApp share kit with honorifics and pantun captions (S; per-guest `?to=` links already exist).
+7. Three search guides: ayat jemputan for WhatsApp, salam kaut by DuitNow, sample aturcara (S).
+8. Self-serve builder, only if the product starts selling to other couples (L).
+
+Out of scope: reseller vouchers, vendor marketplaces and physical add-ons. This product makes the digital card directly.

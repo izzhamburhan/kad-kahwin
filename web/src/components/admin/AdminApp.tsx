@@ -14,23 +14,32 @@ export function AdminApp() {
   useEffect(() => {
     document.documentElement.dataset.theme = "gading";
     if (isDemo) return;
-    const sb = supabase();
-    sb.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      setReady(true);
+    // The client loads on demand, so the page may have gone by the time it arrives.
+    let unsubscribe = () => {};
+    let gone = false;
+    supabase().then((sb) => {
+      if (gone) return;
+      sb.auth.getSession().then(({ data }) => {
+        setSession(data.session);
+        setReady(true);
+      });
+      const { data } = sb.auth.onAuthStateChange((_e, s) => setSession(s));
+      unsubscribe = () => data.subscription.unsubscribe();
     });
-    const { data } = sb.auth.onAuthStateChange((_e, s) => setSession(s));
-    return () => data.subscription.unsubscribe();
+    return () => {
+      gone = true;
+      unsubscribe();
+    };
   }, []);
 
   useEffect(() => {
     if (isDemo || !session) return;
     supabase()
-      .from("admins")
-      .select("email")
-      .maybeSingle()
+      .then((sb) => sb.from("admins").select("email").maybeSingle())
       .then(({ data }) => setAllowed(!!data));
   }, [session]);
+
+  const signOut = () => supabase().then((sb) => sb.auth.signOut());
 
   return (
     <div
@@ -46,12 +55,12 @@ export function AdminApp() {
           <p className="text-center text-stone-600">
             {session.user.email} tiada akses. Tambah emel ini ke jadual <code>admins</code> di Supabase.
           </p>
-          <button type="button" onClick={() => supabase().auth.signOut()} className="mx-auto mt-4 block text-emerald-700">
+          <button type="button" onClick={signOut} className="mx-auto mt-4 block text-emerald-700">
             Log keluar
           </button>
         </Shell>
       ) : allowed ? (
-        <Dashboard onSignOut={() => supabase().auth.signOut()} email={session.user.email} />
+        <Dashboard onSignOut={signOut} email={session.user.email} />
       ) : null}
     </div>
   );
@@ -71,7 +80,7 @@ function Login() {
     e.preventDefault();
     setBusy(true);
     setError("");
-    const { error } = await supabase().auth.signInWithPassword({ email, password });
+    const { error } = await (await supabase()).auth.signInWithPassword({ email, password });
     if (error) setError(error.message);
     setBusy(false);
   }
