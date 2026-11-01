@@ -500,6 +500,121 @@ body {
   --on-gold: #14110a;
 }
 
+/* Marmar: white Carrara marble, gold hairlines, black Bodoni. */
+[data-theme="pro-marmar"] {
+  --bg: #f6f4f1;
+  --bg-2: #efece7;
+  --bg-3: #e6e2db;
+  --ink: #1f1d1b;
+  --ink-soft: #57524b;
+  --ink-mute: #8d877e;
+  --gold: #b88a3a;
+  --gold-hi: #e9cd8c;
+  --gold-lo: #7c5a1f;
+  --petal: #e9cd8c;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-line: rgba(184, 138, 58, 0.35);
+  --paper: #ffffff;
+  --paper-2: #f1ece2;
+  --paper-ink: #1f1d1b;
+  --seal: #7c5a1f;
+  --seal-hi: #b88a3a;
+  --heading: #1f1d1b;
+  --on-gold: #1f1d1b;
+}
+
+/* Tropika: a garden of monstera and palm, with one coral bunga raya. */
+[data-theme="pro-tropika"] {
+  --bg: #eef4ea;
+  --bg-2: #e4ede0;
+  --bg-3: #d8e5d2;
+  --ink: #163a2b;
+  --ink-soft: #3f5f4d;
+  --ink-mute: #77907f;
+  --gold: #2f6b4a;
+  --gold-hi: #6fa37e;
+  --gold-lo: #1d4a32;
+  --petal: #ec6f5a;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-line: rgba(47, 107, 74, 0.25);
+  --paper: #ffffff;
+  --paper-2: #e9f1e4;
+  --paper-ink: #163a2b;
+  --seal: #a8322b;
+  --seal-hi: #ec6f5a;
+  --heading: #1d4a32;
+  --on-gold: #ffffff;
+}
+
+/* Tekat: gold thread couched on maroon velvet. */
+[data-theme="pro-tekat"] {
+  --bg: #3a0d17;
+  --bg-2: #44111c;
+  --bg-3: #521726;
+  --ink: #f7e9d0;
+  --ink-soft: #e3c9a0;
+  --ink-mute: #b8917a;
+  --gold: #d8ae54;
+  --gold-hi: #f3d68c;
+  --gold-lo: #9a7425;
+  --petal: #f3d68c;
+  --card: rgba(243, 214, 140, 0.06);
+  --card-line: rgba(216, 174, 84, 0.35);
+  --paper: #f7ecd6;
+  --paper-2: #e8d3a8;
+  --paper-ink: #3a0d17;
+  --seal: #9a7425;
+  --seal-hi: #d8ae54;
+  --heading: #f3d68c;
+  --on-gold: #2a0810;
+}
+
+/* Ringkas: black type on bone, nothing else. */
+[data-theme="pro-ringkas"] {
+  --bg: #f3f2ee;
+  --bg-2: #ebe9e3;
+  --bg-3: #e1ded6;
+  --ink: #111111;
+  --ink-soft: #4a4a48;
+  --ink-mute: #8a8984;
+  --gold: #1a1a1a;
+  --gold-hi: #3a3a3a;
+  --gold-lo: #000000;
+  --petal: #c9b8a6;
+  --card: rgba(255, 255, 255, 0.6);
+  --card-line: rgba(17, 17, 17, 0.16);
+  --paper: #ffffff;
+  --paper-2: #ebe9e3;
+  --paper-ink: #111111;
+  --seal: #111111;
+  --seal-hi: #3a3a3a;
+  --heading: #111111;
+  --on-gold: #f3f2ee;
+}
+
+/* Purnama: navy night, silver stars, a warm moon. */
+[data-theme="pro-purnama"] {
+  --bg: #0b1430;
+  --bg-2: #101b3d;
+  --bg-3: #16244d;
+  --ink: #eef1f8;
+  --ink-soft: #c4cbe0;
+  --ink-mute: #8a93b3;
+  --gold: #c9d1e6;
+  --gold-hi: #ffffff;
+  --gold-lo: #8a95b5;
+  --petal: #f4e7c3;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-line: rgba(201, 209, 230, 0.25);
+  --paper: #eef1f8;
+  --paper-2: #c9d1e6;
+  --paper-ink: #0b1430;
+  --seal: #8a95b5;
+  --seal-hi: #c9d1e6;
+  --heading: #f4ecd2;
+  --on-gold: #0b1430;
+}
+
 /* Greenery moving in a light breeze. */
 .sway {
   transform-origin: 0 0;

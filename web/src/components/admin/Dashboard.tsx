@@ -32,6 +32,11 @@ const DESIGNS = [
   { path: "sirih/", name: "Sirih", note: "Tepak sirih dibuka satu per satu" },
   { path: "pro/botani/", name: "Pro · Botani", note: "Kertas gading dan daun eucalyptus" },
   { path: "pro/mihrab/", name: "Pro · Mihrab", note: "Hitam emas, gerbang dan bintang khatam" },
+  { path: "pro/marmar/", name: "Pro · Marmar", note: "Marmar putih, garis emas dan monogram" },
+  { path: "pro/tropika/", name: "Pro · Tropika", note: "Daun monstera, palma dan bunga raya" },
+  { path: "pro/tekat/", name: "Pro · Tekat", note: "Sulaman tekat emas atas baldu merah" },
+  { path: "pro/ringkas/", name: "Pro · Ringkas", note: "Ringkas, hanya tipografi" },
+  { path: "pro/purnama/", name: "Pro · Purnama", note: "Langit malam, bintang dan bulan sabit" },
 ];
 
 const inviteUrl = (name?: string, design = "") => {
