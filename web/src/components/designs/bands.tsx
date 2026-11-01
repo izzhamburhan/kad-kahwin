@@ -61,6 +61,32 @@ export function AirmailEdge({ height = 14 }: { height?: number }) {
   );
 }
 
+/** A heart-shaped sirih leaf in a 40x52 box: tip at the top, stalk end at (20, 45). */
+export const SIRIH_LEAF = "M20 1 C29 10 39 23 38 36 C37 46 28 51 20 45 C12 51 3 46 2 36 C1 23 11 10 20 1Z";
+
+/** Sirih: betel leaves strung along a brass cord, tips alternating up and down. */
+export function SirihBand({ height = 28 }: { height?: number }) {
+  const id = useUid();
+  const m = height / 2;
+  const k = (m - 1) / 44;
+  return (
+    <svg width="100%" height={height} aria-hidden className="block">
+      <defs>
+        <pattern id={`sb${id}`} width="36" height={height} patternUnits="userSpaceOnUse">
+          <rect width="36" height={height} fill="#26132c" />
+          <path d={`M0 ${m} H36`} stroke="#c99a3b" strokeWidth="1.2" />
+          <path d={SIRIH_LEAF} fill="#3d8240" transform={`translate(9 ${m}) scale(${k}) translate(-20 -45)`} />
+          <path d={SIRIH_LEAF} fill="#2f6b33" transform={`translate(27 ${m}) rotate(180) scale(${k}) translate(-20 -45)`} />
+          <circle cx="18" cy={m} r="1.8" fill="#f2d58e" />
+          <circle cx="0" cy={m} r="1.8" fill="#f2d58e" />
+          <circle cx="36" cy={m} r="1.8" fill="#f2d58e" />
+        </pattern>
+      </defs>
+      <rect width="100%" height={height} fill={`url(#sb${id})`} />
+    </svg>
+  );
+}
+
 /** Batik: a parang band of diagonal wax blades with cecek dots. */
 export function ParangBand({ height = 26 }: { height?: number }) {
   const id = useUid();
