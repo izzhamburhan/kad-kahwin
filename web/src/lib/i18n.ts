@@ -80,6 +80,13 @@ const strings = {
   navRsvp: { ms: "RSVP", en: "RSVP" },
   navContact: { ms: "Hubungi", en: "Contact" },
   music: { ms: "Muzik", en: "Music" },
+  openNoMusic: { ms: "Buka tanpa muzik", en: "Open without music" },
+  salam: { ms: "Assalamualaikum W.B.T.", en: "Assalamualaikum W.B.T." },
+  call: { ms: "Panggil", en: "Call" },
+  copyAddress: { ms: "Salin alamat", en: "Copy address" },
+  viewMap: { ms: "Lihat Lokasi", en: "View Location" },
+  calendar: { ms: "Kalendar", en: "Calendar" },
+  close: { ms: "Tutup", en: "Close" },
   and: { ms: "&", en: "&" },
   shareText: {
     ms: "Assalamualaikum. Dengan segala hormatnya anda dijemput ke majlis perkahwinan kami.",

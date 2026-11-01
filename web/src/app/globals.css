@@ -264,7 +264,7 @@ body {
   --on-gold: #2b140c;
 }
 
-/* ---------- Alternate designs (/kampung, /songket, /pelamin, /surat, /batik) ----------
+/* ---------- Alternate designs (/kampung, /songket, /pelamin, /surat, /batik, /sirih) ----------
    Each design page wraps itself in .design with its own three faces, and sets
    data-theme on <html>. Headings are solid colour, not foil; section labels are dropped. */
 .design {
@@ -381,6 +381,29 @@ body {
   --on-gold: #1a1208;
 }
 
+/* Sirih: a brass tepak sirih on plum velvet, with green betel leaves. */
+[data-theme="sirih"] {
+  --bg: #1d0e22;
+  --bg-2: #26132c;
+  --bg-3: #311a38;
+  --ink: #f6ead2;
+  --ink-soft: #dac6a0;
+  --ink-mute: #a693a8;
+  --gold: #d4a64a;
+  --gold-hi: #f2d58e;
+  --gold-lo: #8c6420;
+  --petal: #e9c46a;
+  --card: rgba(242, 213, 142, 0.05);
+  --card-line: rgba(212, 166, 74, 0.32);
+  --paper: #f4e8cc;
+  --paper-2: #dcc792;
+  --paper-ink: #26132c;
+  --seal: #2f5a2c;
+  --seal-hi: #447a3c;
+  --heading: #f2d58e;
+  --on-gold: #1d0e22;
+}
+
 /* Cengal planks: vertical boards with darker seams and a little grain. */
 .papan {
   background-color: var(--bg-2);
@@ -424,6 +447,80 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .twinkle {
+    animation: none;
+  }
+}
+/* ---------- Professional cards (/pro/*) ----------
+   The calm e-kad style: cover, one vertical card, an action bar of sheets.
+   Uses the same .design font mapping as the alternate designs. */
+
+/* Botani: ivory paper, sage watercolour greenery, blush blooms. */
+[data-theme="pro-botani"] {
+  --bg: #f7f2e7;
+  --bg-2: #f1eadb;
+  --bg-3: #e8dfcc;
+  --ink: #2f3a2f;
+  --ink-soft: #5d6a5a;
+  --ink-mute: #8b9587;
+  --gold: #7f9a77;
+  --gold-hi: #a9bf9f;
+  --gold-lo: #56704f;
+  --petal: #e6c2b1;
+  --card: rgba(255, 253, 248, 0.75);
+  --card-line: rgba(95, 120, 90, 0.24);
+  --paper: #fffdf8;
+  --paper-2: #efe7d6;
+  --paper-ink: #2f3a2f;
+  --seal: #56704f;
+  --seal-hi: #6f8c67;
+  --heading: #3f5a3c;
+  --on-gold: #ffffff;
+}
+
+/* Mihrab: black-and-gold, a pointed arch and khatam stars. */
+[data-theme="pro-mihrab"] {
+  --bg: #121110;
+  --bg-2: #191715;
+  --bg-3: #22201c;
+  --ink: #f3ead6;
+  --ink-soft: #cdbf9e;
+  --ink-mute: #8f897a;
+  --gold: #c9a55a;
+  --gold-hi: #ecd395;
+  --gold-lo: #8a6a2a;
+  --petal: #ecd395;
+  --card: rgba(236, 211, 149, 0.05);
+  --card-line: rgba(201, 165, 90, 0.3);
+  --paper: #f4ead2;
+  --paper-2: #e2d2ab;
+  --paper-ink: #191715;
+  --seal: #6e1f2a;
+  --seal-hi: #8e2c3a;
+  --heading: #e7cd8a;
+  --on-gold: #14110a;
+}
+
+/* Greenery moving in a light breeze. */
+.sway {
+  transform-origin: 0 0;
+  animation: sway 7s ease-in-out infinite;
+}
+.sway-slow {
+  transform-origin: 0 0;
+  animation: sway 9s ease-in-out infinite reverse;
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1.6deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sway,
+  .sway-slow {
     animation: none;
   }
 }

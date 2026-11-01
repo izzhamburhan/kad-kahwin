@@ -29,6 +29,9 @@ const DESIGNS = [
   { path: "pelamin/", name: "Pelamin", note: "Berjalan ke pelamin" },
   { path: "surat/", name: "Surat", note: "Surat pos udara 90-an" },
   { path: "batik/", name: "Batik", note: "Lilin, canting dan pewarna" },
+  { path: "sirih/", name: "Sirih", note: "Tepak sirih dibuka satu per satu" },
+  { path: "pro/botani/", name: "Pro · Botani", note: "Kertas gading dan daun eucalyptus" },
+  { path: "pro/mihrab/", name: "Pro · Mihrab", note: "Hitam emas, gerbang dan bintang khatam" },
 ];
 
 const inviteUrl = (name?: string, design = "") => {
