@@ -615,6 +615,92 @@ body {
   --on-gold: #0b1430;
 }
 
+/* Senja: apricot paper by day, teal and terracotta from the dusk film. */
+[data-theme="pro-senja"] {
+  --bg: #fdf1e3;
+  --bg-2: #f9e3c9;
+  --bg-3: #f3d2ab;
+  --ink: #1f3a44;
+  --ink-soft: #4a606a;
+  --ink-mute: #6b7b80;
+  --gold: #b4532a;
+  --gold-hi: #c46536;
+  --gold-lo: #8a3c1c;
+  --petal: #ee9d6b;
+  --card: rgba(255, 255, 255, 0.65);
+  --card-line: rgba(180, 83, 42, 0.25);
+  --paper: #fffaf3;
+  --paper-2: #f9e3c9;
+  --paper-ink: #1f3a44;
+  --seal: #1f5a66;
+  --seal-hi: #3a8291;
+  --heading: #1f5a66;
+  --on-gold: #fffaf3;
+}
+
+/* The loops inside the Senja film; they stop whenever the film is off screen or paused. */
+.senja-sway {
+  transform-origin: 50% 100%;
+  animation: senja-sway 6s ease-in-out infinite;
+}
+.senja-walk {
+  animation: senja-walk 2.6s ease-in-out infinite;
+}
+.senja-kite {
+  transform-origin: 50% 100%;
+  animation: senja-kite 8s ease-in-out infinite;
+}
+.senja-fly {
+  transform: translateX(-120%);
+  animation: senja-fly 30s linear infinite;
+}
+.senja-world[data-paused="true"] :is(.senja-sway, .senja-walk, .senja-kite, .senja-fly) {
+  animation-play-state: paused;
+}
+@keyframes senja-sway {
+  0%,
+  100% {
+    rotate: -1.5deg;
+  }
+  50% {
+    rotate: 2deg;
+  }
+}
+@keyframes senja-walk {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.2%);
+  }
+}
+@keyframes senja-kite {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+  50% {
+    transform: translateY(-6%) rotate(4deg);
+  }
+}
+@keyframes senja-fly {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(620%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .senja-sway,
+  .senja-walk,
+  .senja-kite,
+  .senja-fly {
+    animation: none;
+  }
+}
+
 /* Greenery moving in a light breeze. */
 .sway {
   transform-origin: 0 0;

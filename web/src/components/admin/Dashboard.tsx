@@ -37,6 +37,7 @@ const DESIGNS = [
   { path: "pro/tekat/", name: "Pro · Tekat", note: "Sulaman tekat emas atas baldu merah" },
   { path: "pro/ringkas/", name: "Pro · Ringkas", note: "Ringkas, hanya tipografi" },
   { path: "pro/purnama/", name: "Pro · Purnama", note: "Langit malam, bintang dan bulan sabit" },
+  { path: "pro/senja/", name: "Pro · Senja", note: "Filem pendek, mempelai di sawah waktu senja" },
 ];
 
 const inviteUrl = (name?: string, design = "") => {

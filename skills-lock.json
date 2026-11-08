@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "8-bit-orbit-video-template": {
+      "source": "nexu-io/open-design",
+      "sourceType": "github",
+      "skillPath": "skills/8-bit-orbit-video-template/SKILL.md",
+      "computedHash": "53237d7823bdcbb47df5c8276a893b74aa132d1e06762268e8370d8b098518d3"
+    },
+    "video-perception": {
+      "source": "jordanrendric/claude-video-vision",
+      "sourceType": "github",
+      "skillPath": "skills/video-perception/SKILL.md",
+      "computedHash": "39a7f40308fec1a9b5a0dddfbf62c32b5e82da4c36e7dc9eb91d61cb97a0ee23"
+    }
+  }
+}
