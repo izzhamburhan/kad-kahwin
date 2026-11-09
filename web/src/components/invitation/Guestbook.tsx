@@ -16,7 +16,8 @@ const timeAgo = (iso: string, lang: Lang) => {
   return rtf.format(-Math.round(mins / 1440), "day");
 };
 
-export function Guestbook({ lang, guest }: { lang: Lang; guest: string }) {
+/** The guestbook's list and posting, without its look. */
+export function useGuestbook(lang: Lang, guest: string) {
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [name, setName] = useState(guest);
   const [message, setMessage] = useState("");
@@ -45,6 +46,13 @@ export function Guestbook({ lang, guest }: { lang: Lang; guest: string }) {
     }
   }
 
+  return { wishes, name, setName, message, setMessage, busy, error, post, canPost: !busy && !!name.trim() && !!message.trim() };
+}
+
+export const timeAgoLabel = timeAgo;
+
+export function Guestbook({ lang, guest }: { lang: Lang; guest: string }) {
+  const { wishes, name, setName, message, setMessage, busy, error, post } = useGuestbook(lang, guest);
   return (
     <Section id="ucapan" eyebrow={s("guestbook", lang)} title={s("guestbook", lang)}>
       <Reveal>

@@ -38,6 +38,12 @@ export const formatHijri = (iso: string) => {
   }
 };
 
+/** The date split into the pieces a layout sets at different sizes: { weekday, day, month, year }. */
+export const formatDateParts = (iso: string, lang: Lang) =>
+  new Intl.DateTimeFormat(locale(lang), { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: TZ })
+    .formatToParts(new Date(iso))
+    .reduce<Record<string, string>>((a, x) => ({ ...a, [x.type]: x.value }), {});
+
 /** "11:00" → "11:00 pagi" / "11:00 AM" */
 export function formatClock(hhmm: string, lang: Lang) {
   const [h, m] = hhmm.split(":").map(Number);

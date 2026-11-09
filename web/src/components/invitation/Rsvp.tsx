@@ -2,15 +2,11 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { Minus, MessageCircle, Plus } from "lucide-react";
-import { useState, type FormEvent } from "react";
-import { isDemo, submitRsvp } from "@/lib/data";
 import { s } from "@/lib/i18n";
-import { formatDateShort, normalizePhone, waLink } from "@/lib/format";
-import type { Lang, RsvpInput, Wedding } from "@/lib/types";
+import { formatDateShort } from "@/lib/format";
+import type { Lang, Wedding } from "@/lib/types";
 import { Panel, Reveal, Section } from "./Section";
-
-// Kept per mode: a reply saved only on the phone in demo mode must not block a real one later.
-const SENT_KEY = `vowe:rsvp:sent:${isDemo ? "demo" : "live"}`;
+import { useRsvp } from "./useRsvp";
 
 /** Check mark that draws itself, with a burst of petals around it. */
 function SuccessMark() {
@@ -60,66 +56,7 @@ function SuccessMark() {
 }
 
 export function Rsvp({ w, lang, guest }: { w: Wedding; lang: Lang; guest: string }) {
-  const max = Math.max(1, w.rsvp.maxPax);
-  const [form, setForm] = useState<RsvpInput>({ name: guest, phone: "", attending: true, pax: 1, dietary: "", message: "" });
-  const [state, setState] = useState<"idle" | "sending" | "done">("idle");
-  const [error, setError] = useState("");
-  // A reply from this device is remembered, so the form isn't offered twice.
-  // (This component only renders client-side, after the envelope opens.)
-  const [sent, setSent] = useState<RsvpInput | null>(() => {
-    try {
-      const raw = localStorage.getItem(SENT_KEY);
-      return raw ? (JSON.parse(raw) as RsvpInput) : null;
-    } catch {
-      return null;
-    }
-  });
-  const [openedAt] = useState(() => Date.now());
-
-  const deadline = new Date(`${w.rsvp.deadline}T23:59:59+08:00`).getTime();
-  const closed = !!w.rsvp.deadline && openedAt > deadline;
-  const set = <K extends keyof RsvpInput>(k: K, v: RsvpInput[K]) => setForm((f) => ({ ...f, [k]: v }));
-
-  async function submit(e: FormEvent) {
-    e.preventDefault();
-    if (state === "sending") return;
-    const phone = normalizePhone(form.phone);
-    if (!form.name.trim() || phone.length < 9) return setError(s("required", lang));
-    setError("");
-    setState("sending");
-    const input: RsvpInput = {
-      name: form.name.trim().slice(0, 120),
-      phone,
-      attending: form.attending,
-      pax: form.attending ? Math.min(Math.max(1, form.pax), max) : 0,
-      dietary: form.dietary.trim().slice(0, 300),
-      message: form.message.trim().slice(0, 1000),
-    };
-    const res = await submitRsvp(input);
-    if (!res.ok) {
-      setState("idle");
-      return setError(res.reason === "duplicate" ? s("duplicate", lang) : s("errorGeneric", lang));
-    }
-    try {
-      localStorage.setItem(SENT_KEY, JSON.stringify(input));
-    } catch {
-      /* ignore */
-    }
-    setSent(input);
-    setState("done");
-  }
-
-  const whatsappText = (r: RsvpInput) =>
-    [
-      `RSVP ${w.couple.groomShort} & ${w.couple.brideShort}`,
-      `${s("name", lang)}: ${r.name}`,
-      `${s("phone", lang)}: ${r.phone}`,
-      r.attending ? `${s("attending", lang)} (${r.pax})` : s("notAttending", lang),
-      r.dietary && `${s("dietary", lang)}: ${r.dietary}`,
-      r.message && `${r.message}`,
-    ]
-      .filter(Boolean)
-      .join("\n");
+  const { max, form, set, state, error, sent, closed, submit, another, whatsapp, isDemo } = useRsvp(w, lang, guest);
 
   return (
     <Section id="rsvp" eyebrow={s("navRsvp", lang)} title={s("rsvp", lang)}>
@@ -141,28 +78,14 @@ export function Rsvp({ w, lang, guest }: { w: Wedding; lang: Lang; guest: string
                   {sent.attending ? `${s("seeYou", lang)} (${sent.pax} ${s("pax", lang).toLowerCase()})` : s("missYou", lang)}
                 </p>
                 {state !== "done" && <p className="mt-4 font-sans text-xs text-ink-mute">{s("alreadyReplied", lang)}</p>}
-                {/* Families often share one phone; the database still blocks a repeat phone number. */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    try {
-                      localStorage.removeItem(SENT_KEY);
-                    } catch {
-                      /* ignore */
-                    }
-                    setSent(null);
-                    setState("idle");
-                    setForm({ name: "", phone: "", attending: true, pax: 1, dietary: "", message: "" });
-                  }}
-                  className="mt-4 font-sans text-xs text-gold underline underline-offset-4"
-                >
+                <button type="button" onClick={another} className="mt-4 font-sans text-xs text-gold underline underline-offset-4">
                   {s("anotherReply", lang)}
                 </button>
                 {isDemo && (
                   <div className="mt-6 rounded-2xl border border-dashed border-card-line p-4 text-left">
                     <p className="font-sans text-xs leading-relaxed text-ink-soft">{s("demoNote", lang)}</p>
-                    {w.rsvp.whatsapp && (
-                      <a href={waLink(w.rsvp.whatsapp, whatsappText(sent))} target="_blank" rel="noreferrer" className="btn-gold mt-3 w-full">
+                    {whatsapp && (
+                      <a href={whatsapp} target="_blank" rel="noreferrer" className="btn-gold mt-3 w-full">
                         <MessageCircle size={16} /> {s("sendWhatsapp", lang)}
                       </a>
                     )}

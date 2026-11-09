@@ -102,6 +102,14 @@ export function Settings({ initial, onSaved }: { initial: Wedding; onSaved: (w: 
         <Text label="Hashtag" value={w.couple.hashtag} onChange={(v) => update((d) => void (d.couple.hashtag = v))} />
       </Group>
 
+      <Group
+        title="Foto pengantin"
+        footer="Untuk kad Bingkai dan Cincin. Pautan gambar, atau laluan fail dalam web/public (cth. photos/lelaki.jpg). Gunakan potret menegak separas badan. Jika kosong, kad memaparkan ilustrasi."
+      >
+        <Text label="Foto pengantin lelaki" value={w.photos.groom} placeholder="photos/lelaki.jpg" onChange={(v) => update((d) => void (d.photos.groom = v))} />
+        <Text label="Foto pengantin perempuan" value={w.photos.bride} placeholder="photos/perempuan.jpg" onChange={(v) => update((d) => void (d.photos.bride = v))} />
+      </Group>
+
       <Group title="Teks jemputan">
         <Row>
           <label className="grid gap-1">

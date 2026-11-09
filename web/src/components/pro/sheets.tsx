@@ -2,26 +2,13 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { CalendarPlus, Check, Copy, Download, MapPin, MessageCircle, Navigation, Phone, X } from "lucide-react";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { s, t } from "@/lib/i18n";
 import { asset, downloadIcs, formatDate, formatHijri, formatTimeRange, googleCalendarUrl, mapsEmbed, mapsUrl, waLink, wazeUrl } from "@/lib/format";
 import type { Lang, Wedding } from "@/lib/types";
+import { useCopy } from "@/lib/useCopy";
 
 type P = { w: Wedding; lang: Lang };
-
-function useCopy() {
-  const [copied, setCopied] = useState<string | null>(null);
-  const copy = async (text: string, key: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      /* nothing to fall back to without a visible input */
-    }
-    setCopied(key);
-    setTimeout(() => setCopied(null), 1800);
-  };
-  return { copied, copy };
-}
 
 /** Bottom sheet that the action bar opens, the way Malaysian e-kad show contact, map and gift details. */
 export function Sheet({ open, onClose, title, lang, children }: { open: boolean; onClose: () => void; title: string; lang: Lang; children: ReactNode }) {

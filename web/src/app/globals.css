@@ -615,6 +615,160 @@ body {
   --on-gold: #0b1430;
 }
 
+/* ---------- Suite cards (/pro/sutera, /pro/majalah, /pro/zaitun, /pro/bingkai, /pro/cincin) ----------
+   Built on SuiteShell, each with its own layout. Besides the shared tokens, Majalah reads
+   --cover-* for its cover and --band-* for its full-width bands, so one layout serves two palettes. */
+
+/* Sutera: printed cards on dusty-rose silk. */
+[data-theme="pro-sutera"] {
+  --bg: #d8b6ae;
+  --bg-2: #e2c5be;
+  --bg-3: #cba39b;
+  --ink: #47282f;
+  --ink-soft: #5e3a41;
+  --ink-mute: #6e4f55;
+  --gold: #7a3f37;
+  --gold-hi: #a5625a;
+  --gold-lo: #47282f;
+  --petal: #e2c5be;
+  --card: rgba(255, 252, 246, 0.75);
+  --card-line: rgba(122, 63, 55, 0.3);
+  --paper: #fffcf6;
+  --paper-2: #f3e8dc;
+  --paper-ink: #47282f;
+  --seal: #7a3f37;
+  --seal-hi: #a5625a;
+  --heading: #7a3f37;
+  --on-gold: #fffcf6;
+}
+
+/* Majalah: oxblood and cream, a bridal magazine. */
+[data-theme="pro-majalah"] {
+  --bg: #f6ebdd;
+  --bg-2: #efe0cc;
+  --bg-3: #e6d2b9;
+  --ink: #3a0e19;
+  --ink-soft: #5a2a33;
+  --ink-mute: #6e4a50;
+  --gold: #7a1e32;
+  --gold-hi: #9c3349;
+  --gold-lo: #4b1220;
+  --petal: #d9be8f;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-line: rgba(75, 18, 32, 0.22);
+  --paper: #fff8ee;
+  --paper-2: #efe0cc;
+  --paper-ink: #3a0e19;
+  --seal: #4b1220;
+  --seal-hi: #7a1e32;
+  --heading: #4b1220;
+  --on-gold: #f6ebdd;
+  --accent: #7a1e32;
+  --on-accent: #ffffff;
+  --cover: #4b1220;
+  --cover-ink: #f6ebdd;
+  --cover-soft: #ebdcc6;
+  --cover-line: #d9be8f;
+  --cover-petal: #5c1a2b;
+  --cover-anther: #e7c987;
+  --cover-btn: #f6ebdd;
+  --cover-btn-ink: #4b1220;
+  --band: #4b1220;
+  --band-ink: #f6ebdd;
+  --band-soft: #ebdcc6;
+  --band-line: #d9be8f;
+  --band-btn: #f6ebdd;
+  --band-btn-ink: #4b1220;
+}
+
+/* Zaitun: the Majalah layout in two tones of pastel olive. */
+[data-theme="pro-zaitun"] {
+  --bg: #f3f3e3;
+  --bg-2: #e9ead3;
+  --bg-3: #dcdfc1;
+  --ink: #3d4426;
+  --ink-soft: #4c5431;
+  --ink-mute: #5f6744;
+  --gold: #3d4426;
+  --gold-hi: #5a6438;
+  --gold-lo: #2a3019;
+  --petal: #c9cda8;
+  --card: rgba(255, 255, 255, 0.55);
+  --card-line: rgba(61, 68, 38, 0.25);
+  --paper: #fbfbf1;
+  --paper-2: #e9ead3;
+  --paper-ink: #3d4426;
+  --seal: #3d4426;
+  --seal-hi: #5a6438;
+  --heading: #3d4426;
+  --on-gold: #f3f3e3;
+  --accent: #3d4426;
+  --on-accent: #f3f3e3;
+  --cover: #c9cda8;
+  --cover-ink: #3d4426;
+  --cover-soft: #4c5431;
+  --cover-line: #3d4426;
+  --cover-petal: #d8dbbd;
+  --cover-anther: #3d4426;
+  --cover-btn: #3d4426;
+  --cover-btn-ink: #f3f3e3;
+  --band: #c9cda8;
+  --band-ink: #3d4426;
+  --band-soft: #4c5431;
+  --band-line: #3d4426;
+  --band-btn: #3d4426;
+  --band-btn-ink: #f3f3e3;
+}
+
+/* Bingkai: peacock teal and blush, portraits in arches. */
+[data-theme="pro-bingkai"] {
+  --bg: #fff9f3;
+  --bg-2: #fbede6;
+  --bg-3: #f2cfc6;
+  --ink: #12474f;
+  --ink-soft: #2f5d64;
+  --ink-mute: #4f7378;
+  --gold: #12474f;
+  --gold-hi: #2c6670;
+  --gold-lo: #0b3239;
+  --petal: #f2cfc6;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-line: rgba(18, 71, 79, 0.22);
+  --paper: #ffffff;
+  --paper-2: #fbede6;
+  --paper-ink: #12474f;
+  --seal: #12474f;
+  --seal-hi: #2c6670;
+  --heading: #12474f;
+  --on-gold: #fff9f3;
+  --teal: #12474f;
+  --blush: #f2cfc6;
+}
+
+/* Cincin: pastel olive, the couple in two rings. */
+[data-theme="pro-cincin"] {
+  --bg: #f6f5ea;
+  --bg-2: #e9ead3;
+  --bg-3: #dcdfc1;
+  --ink: #3d4426;
+  --ink-soft: #4c5431;
+  --ink-mute: #5f6744;
+  --gold: #3d4426;
+  --gold-hi: #5a6438;
+  --gold-lo: #2a3019;
+  --petal: #e7c9b5;
+  --card: rgba(255, 255, 255, 0.6);
+  --card-line: rgba(61, 68, 38, 0.25);
+  --paper: #fbfbf1;
+  --paper-2: #e9ead3;
+  --paper-ink: #3d4426;
+  --seal: #3d4426;
+  --seal-hi: #5a6438;
+  --heading: #3d4426;
+  --on-gold: #f6f5ea;
+  --band: #c9cda8;
+}
+
 /* Senja: apricot paper by day, teal and terracotta from the dusk film. */
 [data-theme="pro-senja"] {
   --bg: #fdf1e3;

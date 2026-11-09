@@ -76,6 +76,8 @@ export interface Wedding {
   gift: { bank: string; accountName: string; accountNo: string; qrImage: string; note: L };
   story: StoryItem[];
   gallery: Photo[];
+  /** Portraits for the cards that show the couple side by side. Empty: those cards draw them instead. */
+  photos: { groom: string; bride: string };
   music: { src: string };
   sections: SectionToggles;
 }

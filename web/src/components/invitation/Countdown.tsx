@@ -43,10 +43,11 @@ function Unit({ value, label }: { value: number; label: string }) {
   );
 }
 
-export function Countdown({ w, lang, url }: { w: Wedding; lang: Lang; url: string }) {
+/** Time left until the majlis, ticking every second. Render it only on the client. */
+export function useCountdown(w: Wedding) {
   const start = new Date(w.start).getTime();
   const end = new Date(w.end).getTime();
-  // Rendered only after the envelope opens, so reading the clock here can't mismatch hydration.
+  // Rendered only after the card opens, so reading the clock here can't mismatch hydration.
   const [now, setNow] = useState(() => Date.now());
 
   useEffect(() => {
@@ -54,8 +55,12 @@ export function Countdown({ w, lang, url }: { w: Wedding; lang: Lang; url: strin
     return () => clearInterval(t);
   }, []);
 
-  const r = remaining(start, now);
-  const status = now < start ? "before" : now < end ? "during" : "after";
+  const status: "before" | "during" | "after" = now < start ? "before" : now < end ? "during" : "after";
+  return { r: remaining(start, now), status };
+}
+
+export function Countdown({ w, lang, url }: { w: Wedding; lang: Lang; url: string }) {
+  const { r, status } = useCountdown(w);
 
   return (
     <Section id="tarikh" eyebrow={s("countdown", lang)} title={s("date", lang)}>

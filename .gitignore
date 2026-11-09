@@ -1,2 +1,4 @@
 /video
 /.claude
+# Couple photos for local previews. The repo is public, so real photos never go in git.
+/web/public/photos/

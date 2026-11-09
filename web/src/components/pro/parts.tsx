@@ -17,10 +17,23 @@ export const rise = (opened: boolean, i: number, delay = 0.35) => ({
   transition: { duration: 1, ease: EASE, delay: delay + i * 0.14 },
 });
 
-export function OpenButtons({ lang, onOpen, className = "", linkClass = "text-ink-soft" }: { lang: Lang; onOpen: (withMusic: boolean) => void; className?: string; linkClass?: string }) {
+export function OpenButtons({
+  lang,
+  onOpen,
+  className = "",
+  linkClass = "text-ink-soft",
+  buttonClass = "btn-gold min-w-56",
+}: {
+  lang: Lang;
+  onOpen: (withMusic: boolean) => void;
+  className?: string;
+  linkClass?: string;
+  /** The main button; cards that don't want the gold pill pass their own. */
+  buttonClass?: string;
+}) {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.8 }} className={`flex flex-col items-center gap-3 ${className}`}>
-      <button type="button" onClick={() => onOpen(true)} className="btn-gold min-w-56">
+      <button type="button" onClick={() => onOpen(true)} className={buttonClass}>
         {s("open", lang)}
       </button>
       <button type="button" onClick={() => onOpen(false)} className={`font-sans text-xs underline underline-offset-4 ${linkClass}`}>

@@ -6,24 +6,15 @@ import { useState } from "react";
 import { s, t } from "@/lib/i18n";
 import { asset, formatClock, formatDate, formatHijri, formatTimeRange, mapsEmbed, mapsUrl, waLink, wazeUrl } from "@/lib/format";
 import type { Lang, Wedding } from "@/lib/types";
+import { useCopy } from "@/lib/useCopy";
 import { FloralCorner, Hibiscus } from "../ornaments";
 import { Panel, Reveal, Section } from "./Section";
 
 type P = { w: Wedding; lang: Lang };
 
-function useCopy() {
-  const [copied, setCopied] = useState<string | null>(null);
-  const copy = async (text: string, key = text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      /* older browsers: nothing to fall back to without a visible input */
-    }
-    setCopied(key);
-    setTimeout(() => setCopied(null), 1800);
-  };
-  return { copied, copy };
-}
+/** The text a guest shares along with the link. */
+export const shareText = (w: Wedding, lang: Lang, url: string) =>
+  `${s("shareText", lang)}\n\n${w.title[lang]} ${w.couple.groomShort} & ${w.couple.brideShort}\n${formatDate(w.start, lang)}\n${w.venue.name}\n\n${url}`;
 
 /* ---------------- Jemputan ---------------- */
 
@@ -216,8 +207,11 @@ export function Location({ w, lang }: P) {
 
 /* ---------------- Maklumat tetamu ---------------- */
 
-export function GuestNotes({ w, lang }: P) {
-  const items = [
+export type GuestNote = { icon: typeof Car; title: string; text: string; colors?: string[] };
+
+/** Dress code, parking and food notes that are switched on and filled in. */
+export const guestNotes = (w: Wedding, lang: Lang) =>
+  [
     w.sections.dressCode && t(w.dressCode.text, lang) && {
       icon: Shirt,
       title: s("dressCode", lang),
@@ -226,7 +220,10 @@ export function GuestNotes({ w, lang }: P) {
     },
     w.sections.parking && t(w.parking, lang) && { icon: Car, title: s("parking", lang), text: t(w.parking, lang) },
     w.sections.food && t(w.food, lang) && { icon: Utensils, title: s("food", lang), text: t(w.food, lang) },
-  ].filter(Boolean) as { icon: typeof Car; title: string; text: string; colors?: string[] }[];
+  ].filter(Boolean) as GuestNote[];
+
+export function GuestNotes({ w, lang }: P) {
+  const items = guestNotes(w, lang);
   if (!items.length) return null;
 
   return (
@@ -333,13 +330,12 @@ export function Contacts({ w, lang }: P) {
 
 export function Footer({ w, lang, url }: P & { url: string }) {
   const { copied, copy } = useCopy();
-  const shareText = `${s("shareText", lang)}\n\n${w.title[lang]} ${w.couple.groomShort} & ${w.couple.brideShort}\n${formatDate(w.start, lang)}\n${w.venue.name}\n\n${url}`;
   return (
     <footer className="songket-bg relative overflow-hidden px-6 pb-36 pt-20 text-center">
       <Reveal>
         <p className="label text-gold">{s("share", lang)}</p>
         <div className="mt-5 flex flex-wrap justify-center gap-2.5">
-          <a href={`https://wa.me/?text=${encodeURIComponent(shareText)}`} target="_blank" rel="noreferrer" className="btn-gold">
+          <a href={`https://wa.me/?text=${encodeURIComponent(shareText(w, lang, url))}`} target="_blank" rel="noreferrer" className="btn-gold">
             <MessageCircle size={16} /> WhatsApp
           </a>
           <button type="button" onClick={() => copy(url, "link")} className="btn-ghost">

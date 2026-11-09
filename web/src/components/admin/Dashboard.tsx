@@ -38,6 +38,11 @@ const DESIGNS = [
   { path: "pro/ringkas/", name: "Pro · Ringkas", note: "Ringkas, hanya tipografi" },
   { path: "pro/purnama/", name: "Pro · Purnama", note: "Langit malam, bintang dan bulan sabit" },
   { path: "pro/senja/", name: "Pro · Senja", note: "Filem pendek, mempelai di sawah waktu senja" },
+  { path: "pro/sutera/", name: "Pro · Sutera", note: "Kad bercetak atas sutera, satu kad setiap tab" },
+  { path: "pro/majalah/", name: "Pro · Majalah", note: "Gaya majalah pengantin, merah hati dan krim" },
+  { path: "pro/zaitun/", name: "Pro · Zaitun", note: "Gaya majalah, zaitun pastel dua tona" },
+  { path: "pro/bingkai/", name: "Pro · Bingkai", note: "Foto pengantin dalam gerbang, lelaki kiri, perempuan kanan" },
+  { path: "pro/cincin/", name: "Pro · Cincin", note: "Foto pengantin dalam dua bulatan, zaitun pastel" },
 ];
 
 const inviteUrl = (name?: string, design = "") => {
