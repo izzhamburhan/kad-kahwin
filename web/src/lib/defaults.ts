@@ -68,7 +68,7 @@ export const defaultWedding: Wedding = {
     { year: "2027", title: { ms: "Bersatu", en: "Forever" }, text: { ms: "", en: "" } },
   ],
   gallery: [],
-  photos: { groom: "", bride: "" },
+  photos: { groom: "couple/groom.jpg", bride: "couple/bride.jpg" },
   music: { src: "audio/lagu.mp3" },
   sections: {
     story: false,
