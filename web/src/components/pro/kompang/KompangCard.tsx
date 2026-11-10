@@ -158,19 +158,27 @@ function Frame({ w, who }: { w: Wedding; who: "groom" | "bride" }) {
   );
 }
 
-/** The couple walk in from either side, bobbing to three beats, once the cover is open. */
-const walk = (from: -1 | 1, opened: boolean, reduced: boolean) =>
-  reduced
-    ? {}
-    : {
-        initial: { opacity: 0, x: from * 64 },
-        animate: opened ? { opacity: 1, x: 0, y: [0, -6, 0, -6, 0, -6, 0] } : { opacity: 0, x: from * 64 },
-        transition: {
-          x: { duration: BEAT * 3, ease: "easeOut" as const, delay: 0.5 },
-          y: { duration: BEAT * 3, ease: "easeInOut" as const, delay: 0.5 },
-          opacity: { duration: 0.6, delay: 0.5 },
-        },
-      };
+/** One of the couple walking in from the side, bobbing to three beats, once open and on screen. */
+function Walk({ from, opened, reduced, children }: { from: -1 | 1; opened: boolean; reduced: boolean; children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const seen = useInView(ref, { once: true, amount: 0.35 });
+  if (reduced) return <div>{children}</div>;
+  const away = { opacity: 0, x: from * 64 };
+  return (
+    <motion.div
+      ref={ref}
+      initial={away}
+      animate={opened && seen ? { opacity: 1, x: 0, y: [0, -6, 0, -6, 0, -6, 0] } : away}
+      transition={{
+        x: { duration: BEAT * 3, ease: "easeOut", delay: 0.2 },
+        y: { duration: BEAT * 3, ease: "easeInOut", delay: 0.2 },
+        opacity: { duration: 0.6, delay: 0.2 },
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 const D = "min(50vw, 27dvh, 230px)";
 
@@ -299,17 +307,26 @@ function Body(ctx: SuiteCtx) {
 
       <main className="relative mx-auto min-h-dvh max-w-[480px] overflow-x-clip bg-bg pb-24 text-ink">
         <Pucuk />
-        <section aria-label={lang === "ms" ? "Mempelai" : "The couple"} className="px-5 pt-16 text-center">
+        <section id="jemputan" className="px-6 pb-2 pt-16 text-center">
+          <Reveal>
+            <Bismillah className="text-[1.5rem] text-ink" />
+            <p className="mt-1 font-serif text-base italic">{s("salam", lang)}</p>
+            <p className="mt-5 font-serif text-[1.08rem] leading-snug">{w.hosts}</p>
+            <p className="mx-auto mt-3 max-w-[22rem] font-serif text-[1rem] leading-relaxed text-ink-soft">{t(w.message, lang)}</p>
+          </Reveal>
+        </section>
+
+        <section aria-label={lang === "ms" ? "Mempelai" : "The couple"} className="px-5 pb-12 pt-8 text-center">
           <p className="font-sans text-[0.7rem] uppercase tracking-[0.25em] text-ink-mute">
             {lang === "ms" ? "Diiringi paluan kompang" : "To the beat of the kompang"}
           </p>
           <div className="relative mt-5 grid grid-cols-2 gap-3">
-            <motion.div {...walk(-1, opened, reduced)}>
+            <Walk from={-1} opened={opened} reduced={reduced}>
               <Frame w={w} who="groom" />
-            </motion.div>
-            <motion.div {...walk(1, opened, reduced)}>
+            </Walk>
+            <Walk from={1} opened={opened} reduced={reduced}>
               <Frame w={w} who="bride" />
-            </motion.div>
+            </Walk>
             <div className="absolute bottom-0 left-1/2 z-10 w-16 -translate-x-1/2 translate-y-1/2">
               <Kompang hits={opened ? PENINGKAH : []}>
                 <span className="font-script text-[1.9rem] leading-none">&amp;</span>
@@ -325,15 +342,6 @@ function Body(ctx: SuiteCtx) {
               <Kompang key={i} hits={opened ? h : []} tilt={i % 2 ? 9 : -9} className="w-[14vw] max-w-[64px]" />
             ))}
           </div>
-        </section>
-
-        <section id="jemputan" className="px-6 pb-10 pt-12 text-center">
-          <Reveal>
-            <Bismillah className="text-[1.5rem] text-ink" />
-            <p className="mt-1 font-serif text-base italic">{s("salam", lang)}</p>
-            <p className="mt-5 font-serif text-[1.08rem] leading-snug">{w.hosts}</p>
-            <p className="mx-auto mt-3 max-w-[22rem] font-serif text-[1rem] leading-relaxed text-ink-soft">{t(w.message, lang)}</p>
-          </Reveal>
         </section>
 
         <section aria-label={s("date", lang)} className="bg-ink text-bg">
