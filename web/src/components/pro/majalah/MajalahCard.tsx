@@ -9,7 +9,7 @@ import { useCountdown } from "../../invitation/Countdown";
 import { Gallery, guestNotes, Story } from "../../invitation/Details";
 import { Reveal } from "../../invitation/Section";
 import { EASE, OpenButtons } from "../parts";
-import { RsvpForm, ShareButtons, Wishes, type FormSkin } from "../suite";
+import { RsvpForm, ShareButtons, Wishes, type FormSkin, SUITE_MUSIC } from "../suite";
 import { sheetActions, SuiteShell, type CoverProps, type SuiteCtx } from "../SuiteShell";
 
 // Majalah: the invitation laid out like a bridal magazine. Huge names on the cover over a
@@ -349,5 +349,5 @@ function CountLine({ w, lang }: SuiteCtx) {
 
 /** /pro/majalah and /pro/zaitun: the same magazine layout in two palettes. */
 export function MajalahCard({ fontClass, theme }: { fontClass: string; theme: "pro-majalah" | "pro-zaitun" }) {
-  return <SuiteShell theme={theme} fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} />;
+  return <SuiteShell theme={theme} fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} music={SUITE_MUSIC} />;
 }

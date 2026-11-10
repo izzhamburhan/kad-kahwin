@@ -10,7 +10,7 @@ import { useCountdown } from "../../invitation/Countdown";
 import { Gallery, guestNotes, Story } from "../../invitation/Details";
 import { Reveal } from "../../invitation/Section";
 import { EASE, GuestLine, OpenButtons } from "../parts";
-import { Portrait, RsvpForm, ShareButtons, Wishes, type FormSkin } from "../suite";
+import { Portrait, RsvpForm, ShareButtons, Wishes, type FormSkin, SUITE_MUSIC } from "../suite";
 import { sheetActions, SuiteShell, type CoverProps, type SheetId, type SuiteCtx } from "../SuiteShell";
 
 // Cincin: two rings. The couple's portraits sit in overlapping circles set on a diagonal,
@@ -291,5 +291,5 @@ function Body(ctx: SuiteCtx) {
 
 /** /pro/cincin: the couple's portraits in two overlapping rings. */
 export function CincinCard({ fontClass }: { fontClass: string }) {
-  return <SuiteShell theme="pro-cincin" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} />;
+  return <SuiteShell theme="pro-cincin" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} music={SUITE_MUSIC} />;
 }

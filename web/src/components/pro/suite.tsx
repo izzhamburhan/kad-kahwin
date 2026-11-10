@@ -11,6 +11,9 @@ import { shareText } from "../invitation/Details";
 import { timeAgoLabel, useGuestbook } from "../invitation/Guestbook";
 import { useRsvp } from "../invitation/useRsvp";
 
+/** Music for the suite cards (Sutera, Majalah, Zaitun, Bingkai, Cincin). */
+export const SUITE_MUSIC = "audio/bagaikan-sakti.mp3";
+
 // Working parts for the cards built on SuiteShell. Each takes a "skin" of class names, so the
 // same form can be an underlined editorial form on one card and a pill form on another.
 

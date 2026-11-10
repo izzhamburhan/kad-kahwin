@@ -9,7 +9,7 @@ import { Bismillah } from "../../designs/scene";
 import { useCountdown } from "../../invitation/Countdown";
 import { Gallery, guestNotes, Story } from "../../invitation/Details";
 import { EASE, GuestLine, OpenButtons } from "../parts";
-import { RsvpForm, ShareButtons, Wishes, type FormSkin } from "../suite";
+import { RsvpForm, ShareButtons, Wishes, type FormSkin, SUITE_MUSIC } from "../suite";
 import { SuiteShell, type CoverProps, type SuiteCtx } from "../SuiteShell";
 
 // Sutera: a printed invitation suite lying on dusty-rose silk. The cover is the envelope card
@@ -369,5 +369,5 @@ function Body(ctx: SuiteCtx) {
 
 /** /pro/sutera: a printed invitation suite on dusty-rose silk, one card per tab. */
 export function SuteraCard({ fontClass }: { fontClass: string }) {
-  return <SuiteShell theme="pro-sutera" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} />;
+  return <SuiteShell theme="pro-sutera" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} music={SUITE_MUSIC} />;
 }

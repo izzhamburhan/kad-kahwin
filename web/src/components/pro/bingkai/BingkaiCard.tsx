@@ -11,7 +11,7 @@ import { Gallery, guestNotes, Story } from "../../invitation/Details";
 import { Reveal } from "../../invitation/Section";
 import { BrideFigure, GroomFigure } from "../figures";
 import { EASE, GuestLine, OpenButtons } from "../parts";
-import { Portrait, RsvpForm, ShareButtons, Wishes, type FormSkin } from "../suite";
+import { Portrait, RsvpForm, ShareButtons, Wishes, type FormSkin, SUITE_MUSIC } from "../suite";
 import { sheetActions, SuiteShell, type CoverProps, type SheetId, type SuiteCtx } from "../SuiteShell";
 
 // Bingkai: the bride and groom side by side, each in an arched frame, groom on the left and
@@ -297,5 +297,5 @@ function Body(ctx: SuiteCtx) {
 
 /** /pro/bingkai: groom left, bride right, each in an arch. */
 export function BingkaiCard({ fontClass }: { fontClass: string }) {
-  return <SuiteShell theme="pro-bingkai" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} />;
+  return <SuiteShell theme="pro-bingkai" fontClass={fontClass} Cover={Cover} body={(ctx) => <Body {...ctx} />} music={SUITE_MUSIC} />;
 }
