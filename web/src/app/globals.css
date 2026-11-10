@@ -615,7 +615,7 @@ body {
   --on-gold: #0b1430;
 }
 
-/* ---------- Suite cards (/pro/sutera, /pro/majalah, /pro/zaitun, /pro/bingkai, /pro/cincin) ----------
+/* ---------- Suite cards (/pro/sutera, /pro/majalah, /pro/zaitun, /pro/bingkai, /pro/cincin, /pro/kompang) ----------
    Built on SuiteShell, each with its own layout. Besides the shared tokens, Majalah reads
    --cover-* for its cover and --band-* for its full-width bands, so one layout serves two palettes. */
 
@@ -743,6 +743,30 @@ body {
   --on-gold: #fff9f3;
   --teal: #12474f;
   --blush: #f2cfc6;
+}
+
+/* Kompang: goatskin cream, dark wood and kuning diraja, drums beating throughout. */
+[data-theme="pro-kompang"] {
+  --bg: #fbf4e4;
+  --bg-2: #f4e7c9;
+  --bg-3: #ead6aa;
+  --ink: #3f2412;
+  --ink-soft: #5c3a22;
+  --ink-mute: #6f5039;
+  --gold: #b7791a;
+  --gold-hi: #d99b2b;
+  --gold-lo: #7d5112;
+  --petal: #ead6aa;
+  --card: rgba(255, 255, 255, 0.6);
+  --card-line: rgba(63, 36, 18, 0.22);
+  --paper: #fffaf0;
+  --paper-2: #f4e7c9;
+  --paper-ink: #3f2412;
+  --seal: #3f2412;
+  --seal-hi: #6b3a1c;
+  --heading: #3f2412;
+  --on-gold: #fffaf0;
+  --kuning: #e2a530;
 }
 
 /* Cincin: pastel olive, the couple in two rings. */

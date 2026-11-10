@@ -43,6 +43,7 @@ const DESIGNS = [
   { path: "pro/zaitun/", name: "Pro · Zaitun", note: "Gaya majalah, zaitun pastel dua tona" },
   { path: "pro/bingkai/", name: "Pro · Bingkai", note: "Foto pengantin dalam gerbang, lelaki kiri, perempuan kanan" },
   { path: "pro/cincin/", name: "Pro · Cincin", note: "Foto pengantin dalam dua bulatan, zaitun pastel" },
+  { path: "pro/kompang/", name: "Pro · Kompang", note: "Kompang dipalu mengiringi pengantin berarak masuk" },
 ];
 
 const inviteUrl = (name?: string, design = "") => {
