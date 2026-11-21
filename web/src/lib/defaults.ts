@@ -12,7 +12,7 @@ export const defaultWedding: Wedding = {
     hashtag: "#IzzatAishahSelamanya",
   },
   side: "lelaki",
-  hosts: "Norhaniza Bt MD Idris Dan Keluarga",
+  hosts: "Norhaniza binti Md Idris, balu kepada Allahyarham Burhanuddin bin Razak",
   title: { ms: "Walimatul Urus", en: "Wedding Reception" },
   message: {
     ms: "Dengan penuh kesyukuran ke hadrat Ilahi, kami dengan segala hormatnya menjemput Dato' | Datin | Tuan | Puan | Encik | Cik sekeluarga ke majlis perkahwinan putera kami",

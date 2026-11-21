@@ -4,14 +4,8 @@ import { Plus, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { isDemo, resetDemoWedding, saveWedding } from "@/lib/data";
 import { joinIso, splitIso } from "@/lib/format";
-import type { SectionToggles, ThemeId, Wedding } from "@/lib/types";
+import type { SectionToggles, Wedding } from "@/lib/types";
 import { Bilingual, Group, Row, Text, Toggle } from "./ui";
-
-const THEMES: { id: ThemeId; name: string; colors: string[] }[] = [
-  { id: "zamrud", name: "Zamrud Songket", colors: ["#0b2620", "#d4af6a", "#f6efe1"] },
-  { id: "gading", name: "Gading Champagne", colors: ["#f6efe2", "#a9823b", "#1d3a30"] },
-  { id: "nila", name: "Nila Batik", colors: ["#11132a", "#cfa862", "#f3ecdc"] },
-];
 
 const SECTION_LABELS: Record<keyof SectionToggles, string> = {
   story: "Kisah kami",
@@ -74,26 +68,6 @@ export function Settings({ initial, onSaved }: { initial: Wedding; onSaved: (w: 
 
   return (
     <div className="pb-10">
-      <Group title="Tema">
-        <Row className="grid grid-cols-3 gap-2">
-          {THEMES.map((th) => (
-            <button
-              key={th.id}
-              type="button"
-              onClick={() => update((d) => void (d.theme = th.id))}
-              className={`rounded-xl p-2 text-left ring-2 transition ${w.theme === th.id ? "ring-emerald-600" : "ring-transparent"}`}
-            >
-              <div className="flex h-14 overflow-hidden rounded-lg">
-                {th.colors.map((c) => (
-                  <span key={c} className="flex-1" style={{ background: c }} />
-                ))}
-              </div>
-              <p className="mt-1.5 text-xs font-medium">{th.name}</p>
-            </button>
-          ))}
-        </Row>
-      </Group>
-
       <Group title="Pengantin">
         <Text label="Nama panggilan lelaki" value={w.couple.groomShort} onChange={(v) => update((d) => void (d.couple.groomShort = v))} />
         <Text label="Nama penuh lelaki" value={w.couple.groomFull} onChange={(v) => update((d) => void (d.couple.groomFull = v))} />
