@@ -70,6 +70,9 @@ function Shell({ children }: { children: React.ReactNode }) {
   return <div className="mx-auto flex min-h-dvh max-w-sm flex-col justify-center px-5">{children}</div>;
 }
 
+/** A bare username such as "weareizz" signs in as weareizz@kad.admin. */
+const ADMIN_DOMAIN = "kad.admin";
+
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -80,7 +83,7 @@ function Login() {
     e.preventDefault();
     setBusy(true);
     setError("");
-    const { error } = await (await supabase()).auth.signInWithPassword({ email, password });
+    const { error } = await (await supabase()).auth.signInWithPassword({ email: email.includes("@") ? email.trim() : `${email.trim()}@${ADMIN_DOMAIN}`, password });
     if (error) setError(error.message);
     setBusy(false);
   }
@@ -92,9 +95,10 @@ function Login() {
       <form onSubmit={submit} className="mt-8 overflow-hidden rounded-2xl bg-white">
         <input
           className="w-full border-b border-stone-200 px-4 py-3.5 outline-none"
-          type="email"
-          placeholder="Emel"
-          autoComplete="email"
+          type="text"
+          placeholder="Nama pengguna atau emel"
+          autoComplete="username"
+          autoCapitalize="none"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
