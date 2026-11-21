@@ -75,6 +75,8 @@ export const joinIso = (date: string, time: string) => `${date}T${time || "00:00
 const utcStamp = (iso: string) => new Date(iso).toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
 
 export const mapsUrl = (q: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+/** The Maps button: the saved share link if there is one, else a search. */
+export const venueMapsUrl = (v: { mapLink?: string }, q: string) => v.mapLink || mapsUrl(q);
 export const wazeUrl = (q: string) => `https://waze.com/ul?q=${encodeURIComponent(q)}&navigate=yes`;
 export const mapsEmbed = (q: string) => `https://maps.google.com/maps?q=${encodeURIComponent(q)}&z=15&output=embed`;
 

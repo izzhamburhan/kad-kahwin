@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { CalendarPlus, MapPin, Navigation } from "lucide-react";
-import { formatClock, formatDateDots, formatDateParts, formatHijri, formatTimeRange, mapsUrl, wazeUrl } from "@/lib/format";
+import { formatClock, formatDateDots, formatDateParts, formatHijri, formatTimeRange, venueMapsUrl, wazeUrl } from "@/lib/format";
 import { s, t } from "@/lib/i18n";
 import { Bismillah } from "../../designs/scene";
 import { useCountdown } from "../../invitation/Countdown";
@@ -244,7 +244,7 @@ function Body(ctx: SuiteCtx) {
           {w.venue.address}
         </p>
         <div className="mt-5 grid grid-cols-2 gap-2 font-sans text-sm">
-          <a href={mapsUrl(w.venue.mapQuery || `${w.venue.name} ${w.venue.address}`)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 border" style={{ borderColor: C("band-line") }}>
+          <a href={venueMapsUrl(w.venue, w.venue.mapQuery || `${w.venue.name} ${w.venue.address}`)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 border" style={{ borderColor: C("band-line") }}>
             <MapPin size={16} /> Google Maps
           </a>
           <a href={wazeUrl(w.venue.mapQuery || `${w.venue.name} ${w.venue.address}`)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 border" style={{ borderColor: C("band-line") }}>

@@ -116,6 +116,7 @@ export function Settings({ initial, onSaved }: { initial: Wedding; onSaved: (w: 
       <Group title="Lokasi" footer="Carian peta untuk Google Maps & Waze. Pasangan &quot;lat,lng&quot; lebih tepat.">
         <Text label="Nama dewan" value={w.venue.name} onChange={(v) => update((d) => void (d.venue.name = v))} />
         <Text label="Alamat" value={w.venue.address} onChange={(v) => update((d) => void (d.venue.address = v))} multiline />
+        <Text label="Pautan Google Maps" value={w.venue.mapLink ?? ""} placeholder="https://share.google/..." onChange={(v) => update((d) => void (d.venue.mapLink = v.trim()))} />
         <Text label="Carian peta" value={w.venue.mapQuery} onChange={(v) => update((d) => void (d.venue.mapQuery = v))} />
       </Group>
 

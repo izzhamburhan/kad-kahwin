@@ -27,7 +27,8 @@ export const defaultWedding: Wedding = {
   venue: {
     name: "Delima White Hall",
     address: "Kelana Jaya, Petaling Jaya, Selangor",
-    mapQuery: "Delima White Hall Kelana Jaya",
+    mapQuery: "Delima White Hall PKNS Kelana Jaya",
+    mapLink: "https://share.google/thD1a11Tr3ndajoaO",
   },
   events: [
     { id: "e1", time: "11:00", title: { ms: "Ketibaan tetamu & jamuan", en: "Guests arrive & lunch is served" } },

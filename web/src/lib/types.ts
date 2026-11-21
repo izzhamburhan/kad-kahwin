@@ -66,6 +66,8 @@ export interface Wedding {
     address: string;
     /** Search text for Google Maps / Waze. A "lat,lng" pair is more precise. */
     mapQuery: string;
+    /** A Google Maps share link; when set, the Maps button opens it. */
+    mapLink?: string;
   };
   events: WeddingEvent[];
   dressCode: { text: L; colors: string[] };

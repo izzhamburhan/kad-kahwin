@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Car, Check, Copy, Gift as GiftIcon, Link2, MapPin, MessageCircle, Navigation, Shirt, Utensils, X } from "lucide-react";
 import { useState } from "react";
 import { s, t } from "@/lib/i18n";
-import { asset, formatClock, formatDate, formatHijri, formatTimeRange, mapsEmbed, mapsUrl, waLink, wazeUrl } from "@/lib/format";
+import { asset, formatClock, formatDate, formatHijri, formatTimeRange, mapsEmbed, venueMapsUrl, waLink, wazeUrl } from "@/lib/format";
 import type { Lang, Wedding } from "@/lib/types";
 import { useCopy } from "@/lib/useCopy";
 import { FloralCorner, Hibiscus } from "../ornaments";
@@ -191,7 +191,7 @@ export function Location({ w, lang }: P) {
             <p className="mt-2 font-serif text-xl text-ink">{w.venue.name}</p>
             <p className="font-serif text-sm text-ink-soft">{w.venue.address}</p>
             <div className="mt-5 grid grid-cols-2 gap-2.5">
-              <a href={mapsUrl(q)} target="_blank" rel="noreferrer" className="btn-ghost !px-3 !text-[0.7rem]">
+              <a href={venueMapsUrl(w.venue, q)} target="_blank" rel="noreferrer" className="btn-ghost !px-3 !text-[0.7rem]">
                 <MapPin size={16} /> {s("openMaps", lang)}
               </a>
               <a href={wazeUrl(q)} target="_blank" rel="noreferrer" className="btn-ghost !px-3 !text-[0.7rem]">

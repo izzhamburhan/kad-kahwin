@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { CalendarPlus, Check, Copy, Download, MapPin, MessageCircle, Navigation, Phone, X } from "lucide-react";
 import { useEffect, type ReactNode } from "react";
 import { s, t } from "@/lib/i18n";
-import { asset, downloadIcs, formatDate, formatHijri, formatTimeRange, googleCalendarUrl, mapsEmbed, mapsUrl, waLink, wazeUrl } from "@/lib/format";
+import { asset, downloadIcs, formatDate, formatHijri, formatTimeRange, googleCalendarUrl, mapsEmbed, venueMapsUrl, waLink, wazeUrl } from "@/lib/format";
 import type { Lang, Wedding } from "@/lib/types";
 import { useCopy } from "@/lib/useCopy";
 
@@ -103,7 +103,7 @@ export function MapSheet({ w, lang }: P) {
         </button>
       </div>
       <div className="mt-5 grid grid-cols-2 gap-2.5">
-        <a href={mapsUrl(q)} target="_blank" rel="noreferrer" className="btn-ghost !px-3 !text-[0.72rem]">
+        <a href={venueMapsUrl(w.venue, q)} target="_blank" rel="noreferrer" className="btn-ghost !px-3 !text-[0.72rem]">
           <MapPin size={16} /> {s("openMaps", lang)}
         </a>
         <a href={wazeUrl(q)} target="_blank" rel="noreferrer" className="btn-gold !px-3 !text-[0.72rem]">

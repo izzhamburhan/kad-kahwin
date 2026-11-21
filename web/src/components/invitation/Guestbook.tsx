@@ -72,30 +72,28 @@ export function Guestbook({ lang, guest }: { lang: Lang; guest: string }) {
             </button>
           </form>
 
-          <div className="mt-6 max-h-[26rem] overflow-y-auto pr-1 [scrollbar-width:thin]">
-            {wishes.length === 0 ? (
-              <p className="py-6 text-center font-serif italic text-ink-mute">{s("noWishes", lang)}</p>
-            ) : (
-              <ul className="grid gap-3">
-                <AnimatePresence initial={false}>
-                  {wishes.map((w) => (
-                    <motion.li
-                      key={w.id}
-                      layout
-                      initial={{ opacity: 0, y: -12, scale: 0.98 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      className="rounded-2xl border border-card-line px-4 py-3"
-                    >
-                      <p className="font-serif text-base leading-relaxed text-ink">“{w.message}”</p>
-                      <p className="mt-1.5 font-sans text-xs text-gold">
-                        {w.name} <span className="text-ink-mute">· {timeAgo(w.created_at, lang)}</span>
-                      </p>
-                    </motion.li>
-                  ))}
-                </AnimatePresence>
-              </ul>
-            )}
-          </div>
+          {wishes.length === 0 ? (
+            <p className="mt-6 py-6 text-center font-serif italic text-ink-mute">{s("noWishes", lang)}</p>
+          ) : (
+            <ul className="-mx-5 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 [scrollbar-width:thin]">
+              <AnimatePresence initial={false}>
+                {wishes.map((w) => (
+                  <motion.li
+                    key={w.id}
+                    layout
+                    initial={{ opacity: 0, x: -16 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="flex w-[78%] max-w-[18rem] shrink-0 snap-center flex-col justify-between rounded-2xl border border-card-line px-5 py-4"
+                  >
+                    <p className="font-serif text-base leading-relaxed text-ink">“{w.message}”</p>
+                    <p className="mt-3 font-sans text-xs text-gold">
+                      {w.name} <span className="text-ink-mute">· {timeAgo(w.created_at, lang)}</span>
+                    </p>
+                  </motion.li>
+                ))}
+              </AnimatePresence>
+            </ul>
+          )}
         </Panel>
       </Reveal>
     </Section>

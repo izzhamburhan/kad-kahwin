@@ -3,7 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, CalendarPlus, Download, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
 import { useState } from "react";
-import { downloadIcs, formatClock, formatDate, formatHijri, formatTimeRange, googleCalendarUrl, mapsUrl, waLink, wazeUrl } from "@/lib/format";
+import { downloadIcs, formatClock, formatDate, formatHijri, formatTimeRange, googleCalendarUrl, venueMapsUrl, waLink, wazeUrl } from "@/lib/format";
 import { s, t } from "@/lib/i18n";
 import { Bismillah } from "../../designs/scene";
 import { useCountdown } from "../../invitation/Countdown";
@@ -272,7 +272,7 @@ function Body(ctx: SuiteCtx) {
                 <p className="mt-4 font-serif text-[1.35rem] font-medium">{w.venue.name}</p>
                 <p className="font-serif text-[1.05rem] text-ink-soft">{w.venue.address}</p>
                 <div className="mt-5 grid grid-cols-2 gap-2 font-sans text-sm">
-                  <a href={mapsUrl(q)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-sm border border-gold">
+                  <a href={venueMapsUrl(w.venue, q)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-sm border border-gold">
                     <MapPin size={16} /> Google Maps
                   </a>
                   <a href={wazeUrl(q)} target="_blank" rel="noreferrer" className="flex min-h-12 items-center justify-center gap-2 rounded-sm border border-gold">

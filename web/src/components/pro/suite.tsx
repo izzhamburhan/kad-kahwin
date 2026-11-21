@@ -206,6 +206,20 @@ export function Wishes({ lang, guest, skin, item }: { lang: Lang; guest: string;
           </ul>
         )}
       </div>
+      {wishes.length === 0 ? (
+        <p className={`mt-6 py-4 text-center ${skin.note}`}>{s("noWishes", lang)}</p>
+      ) : (
+        <ul className="-mx-5 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-3 [scrollbar-width:thin]">
+          {wishes.map((x) => (
+            <li key={x.id} className={`flex w-[78%] max-w-[18rem] shrink-0 snap-center flex-col justify-between ${item}`}>
+              <p className="leading-relaxed">{x.message}</p>
+              <p className={`mt-3 ${skin.note}`}>
+                {x.name} · {timeAgoLabel(x.created_at, lang)}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
