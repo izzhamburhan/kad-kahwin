@@ -61,13 +61,13 @@ drop policy if exists "weddings admin update" on public.weddings;
 create policy "weddings admin update" on public.weddings for update using (public.is_admin()) with check (public.is_admin());
 
 -- rsvps: anyone inserts within the guest limit; only admins read or delete.
--- The limit comes from the saved settings (rsvp.maxPax), falling back to 4 like the app default.
+-- The limit comes from the saved settings (rsvp.maxPax), falling back to 6 like the app default.
 drop policy if exists "rsvps insert" on public.rsvps;
 create policy "rsvps insert" on public.rsvps for insert with check (
   (attending or pax = 0)
   and pax <= coalesce(
     (select (w.data -> 'rsvp' ->> 'maxPax')::int from public.weddings w where w.slug = wedding_slug),
-    4
+    6
   )
 );
 drop policy if exists "rsvps admin read" on public.rsvps;

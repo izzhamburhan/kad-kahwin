@@ -71,7 +71,7 @@ export function Envelope({
         transition={{ duration: opening ? 0.4 : 1.1, ease: EASE }}
         className="relative z-10 mb-10"
       >
-        <p className="label text-gold">{w.title[lang]}</p>
+        <p className="label text-gold">{s("celebrate", lang)}</p>
         <p className="mt-5 font-serif text-sm italic text-ink-soft">{s("to", lang)}</p>
         <p className="mt-1 font-serif text-2xl text-ink">{guest || s("guest", lang)}</p>
       </motion.div>

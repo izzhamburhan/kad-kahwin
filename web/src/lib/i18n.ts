@@ -3,6 +3,7 @@ import type { L, Lang } from "./types";
 export const t = (text: L | undefined, lang: Lang) => (text ? text[lang] || text.ms || text.en : "");
 
 const strings = {
+  celebrate: { ms: "Raikan Cinta", en: "Celebrate Love" },
   to: { ms: "Kepada", en: "To" },
   guest: { ms: "Tetamu yang dihormati", en: "Our honoured guest" },
   tapSeal: { ms: "Sentuh mohor untuk membuka", en: "Tap the seal to open" },

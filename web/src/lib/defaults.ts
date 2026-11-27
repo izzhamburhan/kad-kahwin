@@ -15,7 +15,7 @@ export const defaultWedding: Wedding = {
   hosts: "Norhaniza binti Md Idris, balu kepada Allahyarham Burhanuddin bin Razak",
   title: { ms: "Walimatul Urus", en: "Wedding Reception" },
   message: {
-    ms: "Dengan penuh kesyukuran ke hadrat Ilahi, kami dengan segala hormatnya menjemput Dato' | Datin | Tuan | Puan | Encik | Cik sekeluarga ke majlis perkahwinan putera kami",
+    ms: "Dengan penuh kesyukuran ke hadrat Ilahi,\nkami dengan segala hormatnya menjemput Dato' | Datin | Tuan | Puan | Encik | Cik sekeluarga ke majlis perkahwinan putera kami",
     en: "With gratitude to the Almighty, we cordially invite you and your family to the wedding reception of our beloved son",
   },
   closing: {
@@ -52,7 +52,7 @@ export const defaultWedding: Wedding = {
     en: "All food served is halal. Let us know any dietary needs in the RSVP form.",
   },
   contacts: [{ name: "Izzham", role: { ms: "Adik pengantin", en: "Groom's brother" }, phone: "601123505422" }],
-  rsvp: { deadline: "2027-03-28", maxPax: 4, whatsapp: "601123505422" },
+  rsvp: { deadline: "2027-03-28", maxPax: 6, whatsapp: "601123505422" },
   gift: {
     bank: "",
     accountName: "",

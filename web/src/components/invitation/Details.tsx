@@ -22,9 +22,7 @@ export function Invitation({ w, lang }: P) {
   return (
     <Section id="jemputan" eyebrow={s("invitation", lang)}>
       <Reveal className="text-center">
-        <p className="label text-ink-soft">{s("hosts", lang)}</p>
-        <p className="mt-3 font-serif text-2xl text-ink">{w.hosts}</p>
-        <p className="mx-auto mt-6 max-w-[22rem] font-serif text-lg leading-relaxed text-ink-soft">{t(w.message, lang)}</p>
+        <p className="mx-auto max-w-[22rem] whitespace-pre-line font-serif text-lg leading-relaxed text-ink-soft">{t(w.message, lang)}</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10 text-center">
@@ -59,6 +57,8 @@ export function Invitation({ w, lang }: P) {
 
       <Reveal delay={0.1} className="mt-10 text-center">
         <p className="mx-auto max-w-[20rem] font-serif text-base italic text-ink-soft">{t(w.closing, lang)}</p>
+        <p className="label mt-8 text-[0.6rem] text-ink-mute">{s("hosts", lang)}</p>
+        <p className="mx-auto mt-2 max-w-[20rem] font-serif text-sm leading-relaxed text-ink-soft">{w.hosts}</p>
       </Reveal>
     </Section>
   );
