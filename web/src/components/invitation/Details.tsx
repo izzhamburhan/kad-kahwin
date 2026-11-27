@@ -18,11 +18,22 @@ export const shareText = (w: Wedding, lang: Lang, url: string) =>
 
 /* ---------------- Jemputan ---------------- */
 
+/** Splits at the first line break, or else after the first comma, so older saved text still works. */
+const splitFirst = (text: string) => {
+  const [, head = text, tail = ""] = text.match(/^([^\n]*)\n([\s\S]*)$/) ?? text.match(/^([^,]*,)\s*([\s\S]*)$/) ?? [];
+  return [head.trim(), tail.trim()];
+};
+
 export function Invitation({ w, lang }: P) {
+  const [opening, invite] = splitFirst(t(w.message, lang));
+  const [host, hostNote] = splitFirst(w.hosts);
   return (
     <Section id="jemputan" eyebrow={s("invitation", lang)}>
       <Reveal className="text-center">
-        <p className="mx-auto max-w-[22rem] whitespace-pre-line font-serif text-lg leading-relaxed text-ink-soft">{t(w.message, lang)}</p>
+        <p className="mx-auto max-w-[22rem] font-serif text-lg leading-relaxed text-ink-soft">{opening}</p>
+        <p className="mt-6 font-serif text-2xl text-ink">{host.replace(/,$/, "")}</p>
+        {hostNote && <p className="mx-auto mt-1 max-w-[20rem] font-serif text-sm leading-relaxed text-ink-soft">{hostNote}</p>}
+        <p className="mx-auto mt-6 max-w-[22rem] font-serif text-lg leading-relaxed text-ink-soft">{invite}</p>
       </Reveal>
 
       <Reveal delay={0.1} className="mt-10 text-center">
@@ -57,8 +68,6 @@ export function Invitation({ w, lang }: P) {
 
       <Reveal delay={0.1} className="mt-10 text-center">
         <p className="mx-auto max-w-[20rem] font-serif text-base italic text-ink-soft">{t(w.closing, lang)}</p>
-        <p className="label mt-8 text-[0.6rem] text-ink-mute">{s("hosts", lang)}</p>
-        <p className="mx-auto mt-2 max-w-[20rem] font-serif text-sm leading-relaxed text-ink-soft">{w.hosts}</p>
       </Reveal>
     </Section>
   );
