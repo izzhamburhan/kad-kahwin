@@ -9,7 +9,7 @@ const strings = {
   tapSeal: { ms: "Sentuh mohor untuk membuka", en: "Tap the seal to open" },
   open: { ms: "Buka Jemputan", en: "Open Invitation" },
   skip: { ms: "Langkau", en: "Skip" },
-  scroll: { ms: "Tatal ke bawah", en: "Scroll down" },
+  scroll: { ms: "Scroll ke bawah", en: "Scroll down" },
   invitation: { ms: "Jemputan", en: "Invitation" },
   hosts: { ms: "Tuan rumah", en: "Hosted by" },
   date: { ms: "Tarikh", en: "Date" },
